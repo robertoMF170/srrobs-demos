@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')}catch(e){}})();</script>
+<title>Cantinho do Alex — Restaurante em Viseu</title>
+<style>
+:root{--marrom:#2b2118;--creme:#faf6f0;--terracota:#b4552d;--verde:#2f4a3a;--suave:#e8dfd3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--creme);color:var(--marrom);line-height:1.6}
+header{background:var(--marrom);color:var(--creme);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{font-size:1.3rem;letter-spacing:.5px}
+nav a{color:var(--creme);text-decoration:none;font-family:Verdana,sans-serif;font-size:.75rem;margin-left:1rem}
+.hero{background:linear-gradient(160deg,var(--verde),var(--marrom));color:var(--creme);text-align:center;padding:3.5rem 5%}
+.hero p.tag{font-style:italic;opacity:.85;margin-bottom:.5rem}
+.hero h2{font-size:2rem;margin-bottom:1rem}
+.btn{display:inline-block;background:var(--terracota);color:#fff;text-decoration:none;font-family:Verdana,sans-serif;font-size:.85rem;padding:.8rem 1.6rem;border-radius:6px;margin-top:1rem}
+section{padding:2.5rem 5%;max-width:1000px;margin:0 auto}
+h3.sec{font-size:1.4rem;color:var(--terracota);margin-bottom:.4rem}
+p.sub{font-family:Verdana,sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:#8a7a68;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.card{background:#fff;border:1px solid var(--suave);border-radius:10px;padding:1.2rem}
+.card strong{color:var(--verde)}
+.sobre p{margin-bottom:1rem}
+form{display:grid;gap:.9rem;background:#fff;padding:1.5rem;border-radius:10px;border:1px solid var(--suave)}
+label{font-family:Verdana,sans-serif;font-size:.75rem;font-weight:bold}
+input,select,textarea{padding:.7rem;border:1px solid var(--suave);border-radius:6px;font:inherit;background:var(--creme)}
+.info{margin-top:1.5rem;font-size:.95rem}
+.info div{margin-bottom:.5rem}
+footer{background:var(--marrom);color:var(--suave);text-align:center;padding:1.5rem 5%;font-family:Verdana,sans-serif;font-size:.7rem}
+footer a{color:var(--suave)}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}.hero h2{font-size:3rem}}
+</style>
+</head>
+<body>
+<!-- DEMO GRATUITA - POR APROVAR - nada enviado ao cliente -->
+
+<header>
+  <h1>Cantinho do Alex</h1>
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contacto">Reservas</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <p class="tag">Cozinha caseira · Viseu</p>
+  <h2>Sabores de sempre, no coração de Viseu</h2>
+  <p>Refeições confecionadas com produto regional, num ambiente acolhedor e familiar.</p>
+  <a href="#contacto" class="btn">Marcar Mesa</a>
+</div>
+
+<section id="servicos">
+  <h3 class="sec">Os nossos serviços</h3>
+  <p class="sub">Do almoço rápido ao jantar descontraído</p>
+  <div class="grid">
+    <div class="card"><strong>🍽️ Almoço &amp; Ementa do Dia</strong><p>Pratos do dia com sopa, prato e sobremesa. Ideal para pausas de trabalho.</p></div>
+    <div class="card"><strong>🌙 Jantar &amp; Grupos</strong><p>Ementa completa e atendimento a grupos, com marcação prévia.</p></div>
+    <div class="card"><strong>🥡 Take-away</strong><p>Leve a nossa cozinha para casa. Encomendas por telefone.</p></div>
+  </div>
+</section>
+
+<section id="sobre">
+  <h3 class="sec">Sobre nós</h3>
+  <p class="sub">Um cantinho com nome de gente</p>
+  <p>O Cantinho do Alex nasceu da vontade de servir comida caseira, simples e genuína, no concelho de Viseu. Trabalhamos com produtores locais sempre que possível.</p>
+  <p>[PREENCHER: Breve história do restaurante — anos de atividade, origem do nome, especialidades da casa.]</p>
+</section>
+
+<section id="contacto">
+  <h3 class="sec">Contacto &amp; Marcação</h3>
+  <p class="sub">Reserve a sua mesa</p>
+  <form action="#" onsubmit="alert('Demonstração — formulário não funcional.');return false;">
+    <div><label for="nome">Nome</label><input id="nome" type="text" required placeholder="O seu nome"></div>
+    <div><label for="tel">Telefone</label><input id="tel" type="tel" required placeholder="9XX XXX XXX"></div>
+    <div><label for="data">Data</label><input id="data" type="date" required></div>
+    <div><label for="hora">Hora</label><input id="hora" type="time" required></div>
+    <div><label for="pessoas">Pessoas</label>
+      <select id="pessoas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+    <button type="submit" class="btn">Pedido de Reserva</button>
+  </form>
+  <div class="info">
+    <div>📍 [PREENCHER: Morada, Viseu]</div>
+    <div>📞 [PREENCHER: Telefone]</div>
+    <div>🕐 [PREENCHER: Horário de funcionamento]</div>
+  </div>
+</section>
+
+<footer>
+  <p>© Cantinho do Alex — Viseu · <a href="https://www.visitviseu.pt/onde-comer.php">Referência: Visit Viseu</a></p>
+  <p>Demonstração gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — SrRobs Virtual Ai · <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a></p>
+  <p>Por aprovar — sem dados reais do negócio.</p>
+</footer>
+
+</body>
+</html>

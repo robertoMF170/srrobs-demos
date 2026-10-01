@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')}catch(e){}})();</script>
+<title>Tasquinha do Brasileiro — Restaurante em Viseu</title>
+<meta name="description" content="Tasquinha do Brasileiro — cozinha caseira em Viseu. Almoços, jantares e takeaway. Marque a sua mesa.">
+<style>
+:root{--tinto:#a63a24;--dourado:#c9962e;--creme:#faf5ec;--escuro:#241a12;--verde:#2c5140}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--escuro);background:var(--creme);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(250,245,236,.95);border-bottom:1px solid #e8ddcc}
+nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 0}
+.brand{font-family:Georgia,serif;font-weight:700;font-size:1.15rem;color:var(--tinto);text-decoration:none}
+nav a{color:var(--escuro);text-decoration:none;font-size:.9rem;padding:6px 10px;border-radius:6px}
+nav a:hover{background:#f0e6d6}
+.btn{display:inline-block;background:var(--tinto);color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:600;border:none;cursor:pointer;font-size:1rem}
+.btn.o{background:transparent;color:var(--tinto);border:2px solid var(--tinto)}
+.btn:hover{opacity:.9}
+.hero{background:linear-gradient(160deg,var(--verde),#16352a);color:#fff;text-align:center;padding:80px 20px}
+.hero h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.2;margin-bottom:14px}
+.hero p{max-width:560px;margin:0 auto 24px;opacity:.9}
+.stars{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 16px;border-radius:999px;font-size:.9rem;margin-bottom:24px}
+section{padding:60px 0}
+h2{font-family:Georgia,serif;font-size:1.7rem;margin-bottom:8px}
+.sub{color:#7a6a55;margin-bottom:32px}
+.cards{display:grid;gap:16px;grid-template-columns:1fr}
+.card{background:#fff;border:1px solid #eee2cd;border-radius:12px;padding:24px}
+.card .ic{font-size:1.8rem}
+.card h3{margin:10px 0 6px;font-size:1.05rem}
+.card p{font-size:.92rem;color:#5c4f3e}
+.strip{background:var(--tinto);color:#fff;text-align:center;padding:28px 20px}
+.strip .big{font-family:Georgia,serif;font-size:2.4rem}
+.review{font-style:italic;font-size:.9rem;opacity:.9;max-width:600px;margin:8px auto}
+.about{display:grid;gap:24px;align-items:center}
+.about .ph{background:linear-gradient(150deg,#f2e3c8,#e6cfa0);border-radius:12px;min-height:220px;display:flex;align-items:center;justify-content:center;color:#8a6d3b;font-size:.9rem;text-align:center;padding:20px}
+form .g{display:grid;gap:14px;grid-template-columns:1fr}
+label{font-size:.85rem;font-weight:600}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d8c9b0;border-radius:8px;font:inherit;background:#fff}
+.note{font-size:.8rem;color:#8a7a63;margin-top:10px}
+.contact{display:grid;gap:24px}
+.info div{margin-bottom:14px}
+footer{background:var(--escuro);color:#cbbfa9;text-align:center;padding:28px 20px;font-size:.85rem}
+@media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}.about{grid-template-columns:1fr 1fr}.contact{grid-template-columns:1fr 1fr}.hero h1{font-size:3rem}form .g{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<!-- DEMO GRATUITA - POR APROVAR - nada enviado ao cliente -->
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#inicio">Tasquinha do Brasileiro</a>
+      <div>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#marcacao">Marcar Mesa</a>
+        <a href="#contacto">Contactos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <span class="stars">★ 4,9 / 5 no Tripadvisor</span>
+  <h1>Sabores caseiros,<br>coração acolhedor.</h1>
+  <p>Bem-vindo à Tasquinha do Brasileiro, em Viseu. Cozinha fresca, simpatia à mesa e aquela sensação de comer em casa — todos os dias.</p>
+  <a class="btn" href="#marcacao">Marcar Mesa</a>
+  &nbsp;<a class="btn o" href="#servicos" style="margin-left:8px">Ver Serviços</a>
+</section>
+
+<section id="servicos">
+  <div class="wrap">
+    <h2>Os nossos serviços</h2>
+    <p class="sub">Do almoço rápido ao jantar demorado, há sempre lugar à mesa.</p>
+    <div class="cards">
+      <div class="card"><div class="ic">🍲</div><h3>Pratos do Dia</h3><p>Ementa renovada diariamente, com sugestões da cozinha. Consulte o prato do dia em [PREENCHER: telefone / redes sociais].</p></div>
+      <div class="card"><div class="ic">🍽️</div><h3>Almoços &amp; Jantares</h3><p>Serviço contínuo num ambiente familiar, ideal para refeições de negócio ou em família.</p></div>
+      <div class="card"><div class="ic">🥡</div><h3>Takeaway</h3><p>Peça a sua refeição para levar. Encomendas pelo [PREENCHER: telefone].</p></div>
+      <div class="card"><div class="ic">🎉</div><h3>Grupos &amp; Eventos</h3><p>Reservas para grupos e celebrações. Fale connosco para preparar a ocasião.</p></div>
+      <div class="card"><div class="ic">🍰</div><h3>Sobremesas Caseiras</h3><p>Doces feidos na casa, para terminar a refeição em beleza.</p></div>
+      <div class="card"><div class="ic">☕</div><h3>Café &amp; Convívio</h3><p>Um café tranquilo, uma conversa demorada. Aqui ninguém tem pressa.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="big">★ 4,9 / 5</div>
+  <p>Avaliação no Tripadvisor — obrigado a todos os nossos clientes!</p>
+  <p class="review">«[EXEMPLO — substituir por avaliação real]»</p>
+</div>
+
+<section id="sobre">
+  <div class="wrap about">
+    <div>
+      <h2>A nossa história</h2>
+      <p>A Tasquinha do Brasileiro nasceu em [PREENCHER: ano] da vontade de [PREENCHER: nome / família] de criar um espaço onde a comida caseira e a simpatia andam sempre de mãos dadas.</p>
+      <p style="margin-top:12px">Trabalhamos com produtos frescos e receitas que atravessam gerações, servidas com o carinho que só uma tasca de bairro conhece. Venha descobrir-nos no coração de Viseu.</p>
+    </div>
+    <div class="ph">[PREENCHER: fotografia real do espaço ou da equipa]</div>
+  </div>
+</section>
+
+<section id="marcacao" style="background:#fff">
+  <div class="wrap contact">
+    <div>
+      <h2>Marque a sua mesa</h2>
+      <p class="sub">Preencha o pedido e confirmamos a disponibilidade.</p>
+      <form onsubmit="alert('Pedido registado! (Demo — será enviado ao restaurante após aprovação)');return false">
+        <div class="g">
+          <div><label>Nome</label><input type="text" required placeholder="O seu nome"></div>
+          <div><label>Telefone</label><input type="tel" required placeholder="9XX XXX XXX"></div>
+          <div><label>Data</label><input type="date" required></div>
+          <div><label>Hora</label><input type="time" required></div>
+          <div><label>Pessoas</label><select><option>2</option><option>3</option><option>4</option><option>6</option><option>Mais de 6</option></select></div>
+          <div><label>Observações</label><input type="text" placeholder="Opcional"></div>
+        </div>
+        <br><button class="btn" type="submit">Pedir Marcação</button>
+        <p class="note">Demo — o formulário será ligado ao restaurante após aprovação.</p>
+      </form>
+    </div>
+    <div class="info" id="contacto">
+      <h2>Contactos</h2>
+      <p class="sub">Estamos à sua espera em Viseu.</p>
+      <div><strong>📍 Morada:</strong><br>[PREENCHER: morada, Viseu]</div>
+      <div><strong>📞 Telefone:</strong><br>[PREENCHER: telefone]</div>
+      <div><strong>✉️ Email:</strong><br>[PREENCHER: email]</div>
+      <div><strong>🕘 Horário:</strong><br>[PREENCHER: dias e horário de funcionamento]</div>
+      <div><strong>🌐 Redes sociais:</strong><br>[PREENCHER: Facebook / Instagram]</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  © <span id="y">2025</span> Tasquinha do Brasileiro · Viseu, Portugal<br>
+  Demo gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — SrRobs Virtual Ai · <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a> — por aprovar.
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

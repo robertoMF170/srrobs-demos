@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SrRobs Virtual Ai — Demo privada</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--marrom:#2b2118;--creme:#faf6f0;--terracota:#b4552d;--verde:#2f4a3a;--suave:#e8dfd3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--creme);color:var(--marrom);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.card{background:#fff;border:1px solid var(--suave);border-radius:14px;max-width:560px;width:100%;padding:36px 32px;box-shadow:0 10px 30px rgba(43,33,24,.08)}
+h1{font-size:1.5rem;margin-bottom:4px}
+.sub{color:#6b5b4b;margin-bottom:22px;font-size:.95rem}
+label{display:block;font-size:.9rem;margin-bottom:6px;color:#6b5b4b}
+input[type=password]{width:100%;padding:12px 14px;border:1px solid var(--suave);border-radius:8px;font-size:1rem;font-family:inherit;background:var(--creme)}
+input[type=password]:focus{outline:2px solid var(--terracota);border-color:transparent}
+button{margin-top:14px;width:100%;padding:13px;border:0;border-radius:8px;background:var(--terracota);color:#fff;font-size:1rem;font-family:inherit;cursor:pointer}
+button:hover{background:#9c4524}
+.erro{color:#a12b2b;margin-top:10px;font-size:.9rem;min-height:1.2em}
+.demos{display:none}
+.demos a{display:block;border:1px solid var(--suave);border-radius:10px;padding:16px 18px;margin-bottom:12px;text-decoration:none;color:var(--marrom);background:var(--creme)}
+.demos a:hover{border-color:var(--terracota)}
+.demos a strong{display:block;font-size:1.05rem}
+.demos a span{font-size:.88rem;color:#6b5b4b}
+footer{margin-top:20px;font-size:.82rem;color:#6b5b4b;text-align:center}
+footer a{color:var(--verde)}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>SrRobs Virtual Ai</h1>
+  <p class="sub">Demonstração privada para clientes. Introduza a palavra-passe que lhe foi enviada.</p>
+
+  <form id="gate" autocomplete="off">
+    <label for="pw">Palavra-passe</label>
+    <input type="password" id="pw" placeholder="••••••••" required>
+    <button type="submit">Entrar</button>
+    <p class="erro" id="erro"></p>
+  </form>
+
+  <div class="demos" id="demos">
+    <p class="sub">Escolha a demonstração:</p>
+    <a href="01-cantinho-do-alex.html"><strong>Cantinho do Alex</strong><span>Site de restaurante — ementa, reservas e pedidos por WhatsApp</span></a>
+    <a href="02-tasquinha-do-brasileiro.html"><strong>Tasquinha do Brasileiro</strong><span>Site de restaurante — cozinha caseira, takeaway e marcações</span></a>
+    <a href="03-o-cantinho-do-tito.html"><strong>O Cantinho do Tito</strong><span>Site de restaurante — pratos da Beira, ambiente familiar</span></a>
+  </div>
+</div>
+
+<footer>
+  Demo criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) ·
+  <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a>
+</footer>
+
+<script>
+(async function () {
+  // SHA-256 da palavra-passe (não guardar a palavra-passe em texto no código).
+  var HASH = "dab4f2cbee3de6fe6e5622b0f5c661569098761fb009c0b56f69dbff8c8fe20a";
+  var gate = document.getElementById("gate");
+  var demos = document.getElementById("demos");
+  var erro = document.getElementById("erro");
+
+  function abrir() {
+    gate.style.display = "none";
+    demos.style.display = "block";
+    try { sessionStorage.setItem("srrobs_demo", "ok"); } catch (e) {}
+  }
+
+  try {
+    if (sessionStorage.getItem("srrobs_demo") === "ok") abrir();
+  } catch (e) {}
+
+  gate.addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById("pw").value;
+    var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    var hex = Array.from(new Uint8Array(buf)).map(function (b) {
+      return b.toString(16).padStart(2, "0");
+    }).join("");
+    if (hex === HASH) {
+      abrir();
+    } else {
+      erro.textContent = "Palavra-passe incorreta. Tente outra vez.";
+    }
+  });
+})();
+</script>
+</body>
+</html>
