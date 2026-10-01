@@ -3,96 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')}catch(e){}})();</script>
-<title>Cantinho do Alex — Restaurante em Viseu</title>
+<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')catch(e){}})();</script>
+<title>Cantinho do Alex — Cozinha caseira no coração de Viseu</title>
+<meta name="description" content="Cantinho do Alex, Viseu — cozinha caseira com produto regional, ementa do dia, reservas e pedidos por WhatsApp. Um cantinho com nome de gente.">
+<meta name="theme-color" content="#2b2118">
+<meta property="og:title" content="Cantinho do Alex — Cozinha caseira em Viseu">
+<meta property="og:description" content="Sabores de sempre, no coração de Viseu. Ementa do dia, reservas e pedidos por WhatsApp.">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--marrom:#2b2118;--creme:#faf6f0;--terracota:#b4552d;--verde:#2f4a3a;--suave:#e8dfd3}
+:root{
+  --terra:#b4552d;--terra-esc:#8f3f1f;--verde:#2f4a3a;--ink:#241a12;--cream:#faf6f0;
+  --areia:#efe6d8;--linha:#e2d5c2;--texto:#4a3b2e;--suave:#8a7a68;--branco:#fff;
+  --sombra:0 18px 50px rgba(43,33,24,.12);--radius:14px;--font-d:"Fraunces",Georgia,serif;
+  --font-b:"Inter",system-ui,sans-serif;--max:1140px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Georgia,'Times New Roman',serif;background:var(--creme);color:var(--marrom);line-height:1.6}
-header{background:var(--marrom);color:var(--creme);padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-header h1{font-size:1.3rem;letter-spacing:.5px}
-nav a{color:var(--creme);text-decoration:none;font-family:Verdana,sans-serif;font-size:.75rem;margin-left:1rem}
-.hero{background:linear-gradient(160deg,var(--verde),var(--marrom));color:var(--creme);text-align:center;padding:3.5rem 5%}
-.hero p.tag{font-style:italic;opacity:.85;margin-bottom:.5rem}
-.hero h2{font-size:2rem;margin-bottom:1rem}
-.btn{display:inline-block;background:var(--terracota);color:#fff;text-decoration:none;font-family:Verdana,sans-serif;font-size:.85rem;padding:.8rem 1.6rem;border-radius:6px;margin-top:1rem}
-section{padding:2.5rem 5%;max-width:1000px;margin:0 auto}
-h3.sec{font-size:1.4rem;color:var(--terracota);margin-bottom:.4rem}
-p.sub{font-family:Verdana,sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:#8a7a68;margin-bottom:1.5rem}
-.grid{display:grid;grid-template-columns:1fr;gap:1rem}
-.card{background:#fff;border:1px solid var(--suave);border-radius:10px;padding:1.2rem}
-.card strong{color:var(--verde)}
-.sobre p{margin-bottom:1rem}
-form{display:grid;gap:.9rem;background:#fff;padding:1.5rem;border-radius:10px;border:1px solid var(--suave)}
-label{font-family:Verdana,sans-serif;font-size:.75rem;font-weight:bold}
-input,select,textarea{padding:.7rem;border:1px solid var(--suave);border-radius:6px;font:inherit;background:var(--creme)}
-.info{margin-top:1.5rem;font-size:.95rem}
-.info div{margin-bottom:.5rem}
-footer{background:var(--marrom);color:var(--suave);text-align:center;padding:1.5rem 5%;font-family:Verdana,sans-serif;font-size:.7rem}
-footer a{color:var(--suave)}
-@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}.hero h2{font-size:3rem}}
-</style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font-b);color:var(--texto);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--terra)}
+h1,h2,h3,h4{font-family:var(--font-d);color:var(--ink);line-height:1.15;font-weight:600}
+.container{max-width:var(--max);margin:0 auto;padding:0 22px}
+.rotulo{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:.9rem}
+.rotulo::before{content:"";width:26px;height:2px;background:var(--terra);border-radius:2px}
+.sec-titulo{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:.8rem}
+.sec-lead{font-size:1.06rem;color:var(--suave);max-width:620px}
+section{padding:clamp(3.6rem,8vw,6.2rem) 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.9rem;border-radius:999px;font-family:var(--font-b);font-weight:600;font-size:.95rem;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.btn-primario{background:var(--terra);color:#fff;box-shadow:0 12px 30px rgba(180,85,45,.32)}
+.btn-primario:hover{background:var(--terra-esc);transform:translateY(-2px)}
+.btn-fantasma{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-fantasma:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.btn-linha{border-color:var(--linha);color:var(--ink);background:var(--branco)}
+.btn-linha:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px)}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:6px}
+.ph{background:var(--areia);border:1px dashed #c9b69c;border-radius:6px;padding:.05em .45em;font-size:.82em;color:#7a6748;font-style:italic}
+
+/* ---------- CABEÇALHO ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(250,246,240,.92);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(43,33,24,.08);border-color:var(--linha)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.95rem 22px;max-width:var(--max);margin:0 auto}
+.marca{display:flex;flex-direction:column;text-decoration:none;line-height:1.1}
+.marca b{font-family:var(--font-d);font-size:1.28rem;color:var(--ink);letter-spacing:.2px}
+.marca span{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:.35rem;list-style:none}
+.nav-links a{display:block;padding:.55rem .85rem;border-radius:999px;text-decoration:none;color:var(--ink);font-size:.92rem;font-weight:500;transition:background .2s ease,color .2s ease}
+.nav-links a:hover{background:var(--areia);color:var(--terra)}
+.nav-cta{margin-left:.5rem;padding:.72rem 1.45rem;font-size:.9rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:.6rem}
+.burger span{width:24px;height:2.5px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+.burger.ativo span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.ativo span:nth-child(2){opacity:0}
+.burger.ativo span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,rgba(36,26,18,.92),rgba(43,33,24,.55) 55%,rgba(47,74,58,.55)),url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&auto=format&fit=crop") center/cover no-repeat}
+.hero-conteudo{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:7rem 22px 5.5rem;width:100%}
+.hero .tag{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:.5rem 1.15rem;border-radius:999px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:1.4rem;backdrop-filter:blur(6px)}
+.hero h1{color:#fff;font-size:clamp(2.5rem,6.2vw,4.6rem);max-width:14ch;margin-bottom:1.25rem;font-weight:600}
+.hero h1 em{font-style:italic;color:#f0c9a8}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.32rem);max-width:54ch;color:rgba(255,255,255,.9);margin-bottom:2.2rem}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:.95rem}
+.hero-barra{position:relative;z-index:2;background:var(--verde);color:#fff}
+.hero-barra .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem;padding-top:1.25rem;padding-bottom:1.25rem}
+.hero-barra div{display:flex;align-items:center;gap:.75rem;font-size:.92rem}
+.hero-barra .ic{width:38px;height:38px;flex:0 0 38px;border-radius:10px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.hero-barra b{display:block;font-size:.85rem;letter-spacing:.04em}
+.hero-barra small{opacity:.8;font-size:.78rem}
+
+/* ---------- ANIMAÇÕES ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visivel{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+/* ---------- A CASA ---------- */.casa{background:var(--branco)}.casa-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2rem,5vw,4.2rem);align-items:center}.casa-texto p{margin-bottom:1.05rem}.casa-mosaico{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:170px 220px;gap:14px}.casa-mosaico img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:var(--sombra)}.casa-mosaico img:first-child{grid-row:span 2;height:100%}.casa-selo{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);background:var(--terra);color:#fff;border-radius:var(--radius);padding:1rem 1.6rem;text-align:center;box-shadow:var(--sombra);white-space:nowrap}.casa-selo b{font-family:var(--font-d);font-size:1.35rem;display:block}.casa-selo small{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.9}.valores{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.1rem;margin-top:2.6rem}.valor{background:var(--cream);border:1px solid var(--linha);border-radius:var(--radius);padding:1.35rem 1.45rem}.valor h4{font-size:1.02rem;margin-bottom:.35rem}.valor p{font-size:.9rem;color:var(--suave)}
+
+/* ---------- EMENTA ---------- */.ementa{background:var(--cream)}.ementa-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.4rem;margin-bottom:2.4rem}.separadores{display:flex;flex-wrap:wrap;gap:.6rem}.sep{padding:.68rem 1.35rem;border-radius:999px;border:1.5px solid var(--linha);background:var(--branco);font-family:var(--font-b);font-size:.9rem;font-weight:600;color:var(--texto);cursor:pointer;transition:all .25s ease}.sep:hover{border-color:var(--terra);color:var(--terra)}.sep.ativo{background:var(--verde);border-color:var(--verde);color:#fff}.carta{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(1.6rem,4vw,3.2rem);align-items:start}.pratos{display:grid;gap:.45rem}.painel-carta{display:none}.painel-carta.ativo{display:grid;gap:.45rem;animation:fade .45s ease}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.prato{display:flex;align-items:baseline;gap:.9rem;background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:1.05rem 1.3rem;transition:border-color .25s ease,transform .25s ease}.prato:hover{border-color:var(--terra);transform:translateX(4px)}.prato-nome{font-weight:600;color:var(--ink)}.prato-nome small{display:block;font-weight:400;font-size:.83rem;color:var(--suave)}.pontilhado{flex:1;border-bottom:2px dotted var(--linha);transform:translateY(-4px)}.prato-preco{font-family:var(--font-d);font-size:1.12rem;color:var(--terra);white-space:nowrap}.carta-lateral{position:sticky;top:110px}.carta-foto{border-radius:var(--radius);overflow:hidden;box-shadow:var(--sombra);margin-bottom:1.1rem}.carta-nota{background:var(--verde);color:#fff;border-radius:var(--radius);padding:1.5rem 1.6rem}.carta-nota h4{color:#fff;font-size:1.12rem;margin-bottom:.55rem}.carta-nota p{font-size:.92rem;opacity:.92}.nota-exemplo{font-size:.82rem;color:var(--suave);margin-top:1.35rem;font-style:italic}
+
+/* ---------- DIFERENCIAIS ---------- */.diferenciais{background:var(--verde);color:#fff}.diferenciais .rotulo{color:#f0c9a8}.diferenciais .rotulo::before{background:#f0c9a8}.diferenciais h2{color:#fff}.diferenciais .sec-lead{color:rgba(255,255,255,.82)}.grelha-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-top:2.6rem}.dif{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:1.75rem 1.6rem;transition:background .25s ease,transform .25s ease}.dif:hover{background:rgba(255,255,255,.14);transform:translateY(-5px)}.dif .ic{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.05rem}.dif h3{color:#fff;font-size:1.12rem;margin-bottom:.45rem}.dif p{font-size:.92rem;color:rgba(255,255,255,.82)}
+
+/* ---------- GALERIA ---------- */.galeria{background:var(--branco)}.grelha-galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px;margin-top:2.6rem}.grelha-galeria figure{overflow:hidden;border-radius:var(--radius);position:relative}.grelha-galeria img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}.grelha-galeria figure:hover img{transform:scale(1.07)}.grelha-galeria .alargado{grid-column:span 2}.grelha-galeria .alto{grid-row:span 2}/* ---------- RESERVAS ---------- */.reservas{background:var(--cream)}.reservas-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:start}.form-reserva{background:var(--branco);border:1px solid var(--linha);border-radius:var(--radius);padding:clamp(1.6rem,3vw,2.4rem);box-shadow:var(--sombra)}.form-grelha{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}.campo{display:flex;flex-direction:column;gap:.4rem}.campo.full{grid-column:1/-1}.campo label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:.02em}.campo input,.campo select,.campo textarea{padding:.85rem 1rem;border:1.5px solid var(--linha);border-radius:10px;font:inherit;font-size:.95rem;background:var(--cream);color:var(--ink);transition:border-color .2s ease,box-shadow .2s ease}.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--terra);box-shadow:0 0 0 4px rgba(180,85,45,.14);outline:none}.form-reserva .btn{width:100%;margin-top:1.3rem;padding:1.05rem 1.9rem}.form-nota{font-size:.82rem;color:var(--suave);margin-top:.95rem;text-align:center}.form-ok{display:none;background:#eaf3ec;border:1.5px solid #9dc3a6;color:#2f5d3c;border-radius:10px;padding:1rem 1.15rem;font-size:.93rem;margin-top:1.15rem}.form-ok.visivel{display:block}.reserva-lateral{display:grid;gap:1.1rem}.caixa-info{background:var(--branco);border:1px solid var(--linha);border-radius:var(--radius);padding:1.55rem 1.65rem}.caixa-info h4{font-size:1.08rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.55rem}.caixa-info p{font-size:.93rem;color:var(--suave)}.caixa-info .btn{margin-top:.95rem}.horario-tabela{width:100%;border-collapse:collapse;font-size:.92rem}.horario-tabela td{padding:.42rem 0;border-bottom:1px solid var(--linha)}.horario-tabela td:last-child{text-align:right;color:var(--ink);font-weight:600}.horario-tabela tr:last-child td{border-bottom:0}
+
+/* ---------- CONTACTO ---------- */.contacto{background:var(--branco);padding-bottom:clamp(3rem,6vw,4.5rem)}.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:center}.contacto-lista{display:grid;gap:1.15rem;margin-top:1.8rem}.contacto-item{display:flex;gap:1.05rem;align-items:flex-start}.contacto-item .ic{width:44px;height:44px;flex:0 0 44px;border-radius:12px;background:var(--areia);display:flex;align-items:center;justify-content:center;font-size:1.15rem}.contacto-item b{display:block;color:var(--ink);font-size:.95rem}.contacto-item p{font-size:.93rem;color:var(--suave)}.mapa{border-radius:var(--radius);overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--linha);min-height:330px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--areia),#e3d3ba);text-align:center;padding:2rem}.mapa p{color:#7a6748;font-size:.93rem}.mapa a{font-weight:600}
+
+/* ---------- RODAPÉ ---------- */.rodape{background:var(--ink);color:rgba(255,255,255,.78)}.rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.2rem;padding-top:clamp(2.6rem,5vw,3.8rem);padding-bottom:2.2rem}.rodape .marca b{color:#fff}.rodape .marca span{color:#f0c9a8}.rodape h4{color:#fff;font-size:1.02rem;margin-bottom:.75rem}.rodape-texto{font-size:.92rem;line-height:1.75}.rodape-texto .ph{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.75)}.rodape-base{border-top:1px solid rgba(255,255,255,.12);padding:1.35rem 22px;text-align:center;font-size:.82rem;color:rgba(255,255,255,.6)}.rodape-base a{color:#f0c9a8}
+
+/* ---------- BOTÕES FLUTUANTES ---------- */.wa-flutuante{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(37,211,102,.42);transition:transform .25s ease}.wa-flutuante:hover{transform:scale(1.08)}.subir{position:fixed;right:26px;bottom:94px;z-index:70;width:46px;height:46px;border-radius:50%;background:var(--verde);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.15rem;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}.subir.visivel{opacity:1;pointer-events:auto}.subir:hover{transform:translateY(-3px)}
+
+/* ---------- RESPONSIVO ---------- */@media(max-width:920px){.casa-grid,.carta,.reservas-grid,.contacto-grid{grid-template-columns:1fr}.carta-lateral{position:static}.grelha-galeria{grid-template-columns:repeat(2,1fr)}.grelha-galeria .alto{grid-row:span 1}}@media(max-width:760px){.nav-links{position:fixed;inset:0 0 auto;top:64px;flex-direction:column;align-items:stretch;background:var(--branco);border-bottom:1px solid var(--linha);padding:1.1rem;gap:.35rem;transform:translateY(-130%);transition:transform .35s ease;box-shadow:var(--sombra)}.nav-links.aberto{transform:none}.nav-links a{padding:.85rem 1rem}.nav-cta{margin-left:0;margin-top:.5rem}.burger{display:flex}.hero{min-height:76vh}.hero-conteudo{padding-top:5.5rem}.form-grelha{grid-template-columns:1fr}.rodape-grid{grid-template-columns:1fr;gap:1.6rem}}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Cantinho do Alex",
+  "servesCuisine": "Cozinha portuguesa caseira",
+  "address": {"@type": "PostalAddress", "addressLocality": "Viseu", "addressCountry": "PT", "streetAddress": "[PREENCHER: morada]"},
+  "telephone": "[PREENCHER: telefone]",
+  "priceRange": "€€",
+  "url": ""
+}
+</script>
 </head>
 <body>
 <!-- DEMO GRATUITA - POR APROVAR - nada enviado ao cliente -->
 
-<header>
-  <h1>Cantinho do Alex</h1>
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#contacto">Reservas</a>
+<header class="site-header" id="topo">
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="marca" href="#topo"><b>Cantinho do Alex</b><span>Cozinha caseira · Viseu</span></a>
+    <ul class="nav-links" id="menu">
+      <li><a href="#casa">A Casa</a></li>
+      <li><a href="#ementa">Ementa</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#reservas">Reservas</a></li>
+      <li><a href="#contacto">Contactos</a></li>
+      <li><a class="btn btn-primario nav-cta" href="#reservas">Marcar Mesa</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
 
-<div class="hero">
-  <p class="tag">Cozinha caseira · Viseu</p>
-  <h2>Sabores de sempre, no coração de Viseu</h2>
-  <p>Refeições confecionadas com produto regional, num ambiente acolhedor e familiar.</p>
-  <a href="#contacto" class="btn">Marcar Mesa</a>
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" role="img" aria-label="Sala acolhedora do restaurante"></div>
+  <div class="hero-conteudo">
+    <span class="tag">🍽️ Cozinha caseira · Viseu</span>
+    <h1>Sabores de sempre, <em>no coração de Viseu</em></h1>
+    <p class="lead">Comida feita como em casa — produto da região, receitas de família e aquele lugar onde ninguém tem pressa de se levantar da mesa.</p>
+    <div class="hero-acoes">
+      <a class="btn btn-primario" href="#reservas">Marcar Mesa</a>
+      <a class="btn btn-fantasma" href="#ementa">Ver a Ementa</a>
+    </div>
+  </div>
+</section>
+<div class="hero-barra">
+  <div class="container">
+    <div><span class="ic">📍</span><div><b>No centro de Viseu</b><small><span class="ph">[PREENCHER: morada]</span></small></div></div>
+    <div><span class="ic">🕐</span><div><b>Aberto hoje</b><small><span class="ph">[PREENCHER: horário]</span></small></div></div>
+    <div><span class="ic">📞</span><div><b>Reservas</b><small><span class="ph">[PREENCHER: telefone]</span></small></div></div>
+    <div><span class="ic">💬</span><div><b>Pedidos por WhatsApp</b><small>Resposta rápida, sem apps novas</small></div></div>
+  </div>
 </div>
 
-<section id="servicos">
-  <h3 class="sec">Os nossos serviços</h3>
-  <p class="sub">Do almoço rápido ao jantar descontraído</p>
-  <div class="grid">
-    <div class="card"><strong>🍽️ Almoço &amp; Ementa do Dia</strong><p>Pratos do dia com sopa, prato e sobremesa. Ideal para pausas de trabalho.</p></div>
-    <div class="card"><strong>🌙 Jantar &amp; Grupos</strong><p>Ementa completa e atendimento a grupos, com marcação prévia.</p></div>
-    <div class="card"><strong>🥡 Take-away</strong><p>Leve a nossa cozinha para casa. Encomendas por telefone.</p></div>
+<!-- ===== A CASA ===== -->
+<section class="casa" id="casa">
+  <div class="container">
+    <div class="casa-grid">
+      <div class="casa-texto reveal">
+        <span class="rotulo">A nossa casa</span>
+        <h2 class="sec-titulo">Um cantinho<br>com nome de gente</h2>
+        <p class="sec-lead">O Cantinho do Alex nasceu da vontade de servir comida caseira, simples e genuína — sem pretensões, com o sabor que se espera de uma mesa de família.</p>
+        <p>Trabalhamos com <strong>produtores locais</strong> sempre que possível: legumes da horta da região, carne do talho da rua e o pão ainda quente da padaria da esquina. A ementa muda com as estações — porque a boa cozinha começa na matéria-prima.</p>
+        <p>Seja um almoço rápido no meio da semana, um jantar demorado com os amigos ou uma celebração em família, aqui há sempre lugar à mesa — e uma sobremesa da casa a esperar por si.</p>
+        <div class="valores">
+          <div class="valor"><h4>🌿 Produto da região</h4><p>Legumes, carne e peixe de fornecedores de confiança, escolhidos todos os dias.</p></div>
+          <div class="valor"><h4>🍲 Cozinha de raiz</h4><p>Receitas de família, feitas na hora — nada de atalhos nem de micro-ondas.</p></div>
+          <div class="valor"><h4>🤝 Casa cheia de gente</h4><p>Atendimento próximo, como manda a tradição de Viseu.</p></div>
+        </div>
+      </div>
+      <div class="casa-mosaico reveal">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80&auto=format&fit=crop" alt="Sala do restaurante posta para o serviço" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=80&auto=format&fit=crop" alt="Prato da casa acabado de servir" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=80&auto=format&fit=crop" alt="Café e doce da casa" loading="lazy">
+        <div class="casa-selo"><b>Cozinha aberta</b><small>feito na hora</small></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="sobre">
-  <h3 class="sec">Sobre nós</h3>
-  <p class="sub">Um cantinho com nome de gente</p>
-  <p>O Cantinho do Alex nasceu da vontade de servir comida caseira, simples e genuína, no concelho de Viseu. Trabalhamos com produtores locais sempre que possível.</p>
-  <p>[PREENCHER: Breve história do restaurante — anos de atividade, origem do nome, especialidades da casa.]</p>
+<!-- ===== EMENTA ===== -->
+<section class="ementa" id="ementa">
+  <div class="container">
+    <div class="ementa-topo">
+      <div class="reveal">
+        <span class="rotulo">A nossa ementa</span>
+        <h2 class="sec-titulo">O que se come por aqui</h2>
+        <p class="sec-lead">Uma carta curta e honesta, que muda com as estações. Estes são os favoritos da casa.</p>
+      </div>
+      <div class="separadores reveal" role="tablist" aria-label="Categorias da ementa">
+        <button class="sep ativo" data-tab="tab-entradas" role="tab">Sopas &amp; Entradas</button>
+        <button class="sep" data-tab="tab-casa" role="tab">Pratos da Casa</button>
+        <button class="sep" data-tab="tab-peixe" role="tab">Peixe &amp; Carne</button>
+        <button class="sep" data-tab="tab-doces" role="tab">Sobremesas</button>
+        <button class="sep" data-tab="tab-bebidas" role="tab">Bebidas</button>
+      </div>
+    </div>
+    <div class="carta">
+      <div class="pratos reveal">
+        <div class="painel-carta ativo" id="tab-entradas">
+          <div class="prato"><div class="prato-nome">Sopa de legumes da horta<small>Feita todos os dias, com legumes da estação</small></div><div class="pontilhado"></div><div class="prato-preco">3,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Caldo verde com broa<small>Com chouriço de porco preto</small></div><div class="pontilhado"></div><div class="prato-preco">4,00 €</div></div>
+          <div class="prato"><div class="prato-nome">Alheira frita com ovo<small>Da região de Trás-os-Montes</small></div><div class="pontilhado"></div><div class="prato-preco">5,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Presunto e queijo da serra<small>Para partilhar à mesa</small></div><div class="pontilhado"></div><div class="prato-preco">6,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Paté de fígado à antiga<small>Com tostas de broa e manteiga</small></div><div class="pontilhado"></div><div class="prato-preco">4,50 €</div></div>
+        </div>
+        <div class="painel-carta" id="tab-casa">
+          <div class="prato"><div class="prato-nome">Bacalhau à Brás<small>O clássico que nunca sai da carta</small></div><div class="pontilhado"></div><div class="prato-preco">12,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Cozido à portuguesa<small>Aos domingos — reservar com antecedência</small></div><div class="pontilhado"></div><div class="prato-preco">11,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Feijoada à transmontana<small>Com arroz branco e laranja</small></div><div class="pontilhado"></div><div class="prato-preco">10,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Bitoque do talho<small>Com ovo a cavalo, batata e salada</small></div><div class="pontilhado"></div><div class="prato-preco">9,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Migas de espargos com ovo<small>De acordo com a estação</small></div><div class="pontilhado"></div><div class="prato-preco">8,50 €</div></div>
+        </div>
+        <div class="painel-carta" id="tab-peixe">
+          <div class="prato"><div class="prato-nome">Bacalhau com natas<small>Gratinado, com batata palha</small></div><div class="pontilhado"></div><div class="prato-preco">12,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Dourada grelhada<small>Com legumes salteados</small></div><div class="pontilhado"></div><div class="prato-preco">13,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Cabrito assado no forno de lenha<small>Aos sábados e domingos</small></div><div class="pontilhado"></div><div class="prato-preco">14,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Secretos de porco preto<small>Com arroz de forno</small></div><div class="pontilhado"></div><div class="prato-preco">12,00 €</div></div>
+          <div class="prato"><div class="prato-nome">Entremeada com castanhas<small>Receita de inverno</small></div><div class="pontilhado"></div><div class="prato-preco">11,00 €</div></div>
+        </div>
+        <div class="painel-carta" id="tab-doces">
+          <div class="prato"><div class="prato-nome">Pudim Abade de Priscos<small>Receita conventual, feito na casa</small></div><div class="pontilhado"></div><div class="prato-preco">4,00 €</div></div>
+          <div class="prato"><div class="prato-nome">Arroz doce da avó<small>Com canela em pau</small></div><div class="pontilhado"></div><div class="prato-preco">3,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Leite-creme queimado<small>Servido fresquinho</small></div><div class="pontilhado"></div><div class="prato-preco">3,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Serradura<small>Doce de colher, da casa</small></div><div class="pontilhado"></div><div class="prato-preco">3,50 €</div></div>
+        </div>
+        <div class="painel-carta" id="tab-bebidas">
+          <div class="prato"><div class="prato-nome">Vinho da casa (jarra 0,5 L)<small>Tinto ou branco da região do Dão</small></div><div class="pontilhado"></div><div class="prato-preco">4,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Imperial<small>Da pressão, bem fresca</small></div><div class="pontilhado"></div><div class="prato-preco">1,20 €</div></div>
+          <div class="prato"><div class="prato-nome">Água mineral<small>Com ou sem gás</small></div><div class="pontilhado"></div><div class="prato-preco">1,50 €</div></div>
+          <div class="prato"><div class="prato-nome">Café da casa<small>Torrado na região</small></div><div class="pontilhado"></div><div class="prato-preco">0,80 €</div></div>
+        </div>
+        <p class="nota-exemplo">Pratos e valores de exemplo para demonstração — a confirmar com o restaurante.</p>
+      </div>
+      <aside class="carta-lateral reveal">
+        <div class="carta-foto"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=80&auto=format&fit=crop" alt="Prato da casa na brasa" loading="lazy"></div>
+        <div class="carta-nota">
+          <h4>💡 Sugerido pelo chef</h4>
+          <p>Pergunte pela <strong>sugestão do dia</strong> — segue sempre o que há de melhor no mercado essa manhã. E guarde espaço: as sobremesas são feitas na casa.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
 </section>
-
-<section id="contacto">
-  <h3 class="sec">Contacto &amp; Marcação</h3>
-  <p class="sub">Reserve a sua mesa</p>
-  <form action="#" onsubmit="alert('Demonstração — formulário não funcional.');return false;">
-    <div><label for="nome">Nome</label><input id="nome" type="text" required placeholder="O seu nome"></div>
-    <div><label for="tel">Telefone</label><input id="tel" type="tel" required placeholder="9XX XXX XXX"></div>
-    <div><label for="data">Data</label><input id="data" type="date" required></div>
-    <div><label for="hora">Hora</label><input id="hora" type="time" required></div>
-    <div><label for="pessoas">Pessoas</label>
-      <select id="pessoas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
-    <button type="submit" class="btn">Pedido de Reserva</button>
-  </form>
-  <div class="info">
-    <div>📍 [PREENCHER: Morada, Viseu]</div>
-    <div>📞 [PREENCHER: Telefone]</div>
-    <div>🕐 [PREENCHER: Horário de funcionamento]</div>
+<!-- ===== DIFERENCIAIS ===== -->
+<section class="diferenciais" id="servicos">
+  <div class="container">
+    <div class="reveal">
+      <span class="rotulo">Porquê nós</span>
+      <h2 class="sec-titulo">Tudo o que precisa<br>para uma boa refeição</h2>
+      <p class="sec-lead">Do almoço rápido ao jantar demorado, do takeaway à mesa grande de família.</p>
+    </div>
+    <div class="grelha-4">
+      <div class="dif reveal"><div class="ic">🍲</div><h3>Ementa do Dia</h3><p>Sopa, prato e sobremesa com preço amigável — renovada todos os dias, com as sugestões da cozinha.</p></div>
+      <div class="dif reveal"><div class="ic">🌙</div><h3>Jantares &amp; Grupos</h3><p>Mesas grandes, celebrações e aniversários. Reserve com antecedência e tratamos de tudo.</p></div>
+      <div class="dif reveal"><div class="ic">🥡</div><h3>Take-away</h3><p>Leve a nossa cozinha para casa. Peça por telefone ou WhatsApp e venha buscar à hora que quiser.</p></div>
+      <div class="dif reveal"><div class="ic">🎉</div><h3>Eventos Privados</h3><p>Almoços de festa, baptizados e encontros — menu à medida, do aperitivo à sobremesa.</p></div>
+    </div>
   </div>
 </section>
 
-<footer>
-  <p>© Cantinho do Alex — Viseu · <a href="https://www.visitviseu.pt/onde-comer.php">Referência: Visit Viseu</a></p>
-  <p>Demonstração gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — SrRobs Virtual Ai · <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a></p>
-  <p>Por aprovar — sem dados reais do negócio.</p>
+<!-- ===== GALERIA ===== -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="reveal">
+      <span class="rotulo">Galeria</span>
+      <h2 class="sec-titulo">A casa por dentro</h2>
+      <p class="sec-lead">Um lugar quente, cheio de gente e de comida a sair da cozinha.</p>
+    </div>
+    <div class="grelha-galeria reveal">
+      <figure class="alargado alto"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1000&q=80&auto=format&fit=crop" alt="Sala do restaurante durante o serviço" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80&auto=format&fit=crop" alt="Prato fresco da ementa" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80&auto=format&fit=crop" alt="Peixe grelhado servido à mesa" loading="lazy"></figure>
+      <figure class="alargado"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1000&q=80&auto=format&fit=crop" alt="Amigos a jantar em conjunto" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80&auto=format&fit=crop" alt="Detalhe de um prato da casa" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80&auto=format&fit=crop" alt="Café para terminar a refeição" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESERVAS ===== -->
+<section class="reservas" id="reservas">
+  <div class="container">
+    <div class="reservas-grid">
+      <div class="reveal">
+        <span class="rotulo">Reservas</span>
+        <h2 class="sec-titulo">Marque a sua mesa</h2>
+        <p class="sec-lead">Preencha o pedido e confirmamos a disponibilidade em minutos. Prefere falar connosco? Também atendemos por WhatsApp.</p>
+        <form class="form-reserva" id="form-reserva" novalidate>
+          <div class="form-grelha">
+            <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" type="text" required placeholder="O seu nome" autocomplete="name"></div>
+            <div class="campo"><label for="tel">Telefone</label><input id="tel" name="tel" type="tel" required placeholder="9XX XXX XXX" autocomplete="tel"></div>
+            <div class="campo"><label for="data">Data</label><input id="data" name="data" type="date" required></div>
+            <div class="campo"><label for="hora">Hora</label><input id="hora" name="hora" type="time" required></div>
+            <div class="campo"><label for="pessoas">Pessoas</label><select id="pessoas" name="pessoas"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></div>
+            <div class="campo"><label for="ocasiao">Ocasião (opcional)</label><select id="ocasiao" name="ocasiao"><option value="">—</option><option>Aniversário</option><option>Almoço de negócio</option><option>Em família</option><option>Outro</option></select></div>
+            <div class="campo full"><label for="obs">Pedidos especiais (opcional)</label><textarea id="obs" name="obs" rows="3" placeholder="Alergias, cadeira de bebé, mesa junto à janela…"></textarea></div>
+          </div>
+          <button class="btn btn-primario" type="submit">Pedir Reserva</button>
+          <p class="form-nota">Demo — o formulário será ligado ao restaurante após aprovação.</p>
+          <div class="form-ok" id="form-ok">✅ Pedido registado! (Demonstração — nada foi enviado.) Em produção, confirmamos a sua mesa por telefone ou WhatsApp em minutos.</div>
+        </form>
+      </div>
+      <div class="reserva-lateral reveal">
+        <div class="caixa-info">
+          <h4>💬 Reservas por WhatsApp</h4>
+          <p>Envie uma mensagem com o dia, a hora e quantas pessoas são — nós tratamos do resto. É a forma mais rápida de marcar.</p>
+          <!-- EM PRODUÇÃO: ligar a https://wa.me/351<PREENCHER> -->
+          <a class="btn btn-primario" href="#reservas">Pedir por WhatsApp</a>
+        </div>
+        <div class="caixa-info">
+          <h4>🕐 Horário de funcionamento</h4>
+          <table class="horario-tabela">
+            <tr><td>Segunda</td><td>Fechado</td></tr>
+            <tr><td>Terça a sexta</td><td><span class="ph">[PREENCHER: 12h–15h · 19h–22h]</span></td></tr>
+            <tr><td>Sábado</td><td><span class="ph">[PREENCHER: horário]</span></td></tr>
+            <tr><td>Domingo</td><td><span class="ph">[PREENCHER: almoço]</span></td></tr>
+          </table>
+        </div>
+        <div class="caixa-info">
+          <h4>🎂 Grupos e celebrações</h4>
+          <p>Para mesas com mais de 8 pessoas ou eventos privados, fale connosco com alguns dias de antecedência — preparamos um menu à medida.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="reveal">
+        <span class="rotulo">Onde estamos</span>
+        <h2 class="sec-titulo">Venha visitar-nos</h2>
+        <p class="sec-lead">No coração de Viseu, fácil de chegar e difícil de ir embora.</p>
+        <div class="contacto-lista">
+          <div class="contacto-item"><div class="ic">📍</div><div><b>Morada</b><p><span class="ph">[PREENCHER: morada completa]</span> — Viseu, Portugal</p></div></div>
+          <div class="contacto-item"><div class="ic">📞</div><div><b>Telefone</b><p><span class="ph">[PREENCHER: telefone]</span></p></div></div>
+          <div class="contacto-item"><div class="ic">✉️</div><div><b>Email</b><p><span class="ph">[PREENCHER: email]</span></p></div></div>
+          <div class="contacto-item"><div class="ic">🌐</div><div><b>Redes sociais</b><p><span class="ph">[PREENCHER: Facebook / Instagram]</span></p></div></div>
+        </div>
+      </div>
+      <div class="mapa reveal">
+        <div>
+          <p style="font-size:2rem;margin-bottom:.6rem">🗺️</p>
+          <p><b>Mapa embebido em produção</b><br>com a localização exata do restaurante.</p>
+          <p style="margin-top:.8rem"><a href="https://www.google.com/maps/search/restaurantes+Viseu" target="_blank" rel="noopener">Abrir no Google Maps →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <div class="container rodape-grid">
+    <div>
+      <a class="marca" href="#topo"><b>Cantinho do Alex</b><span>Cozinha caseira · Viseu</span></a>
+      <p class="rodape-texto">Sabores de sempre, no coração de Viseu. Refeições confecionadas com produto regional, num ambiente acolhedor e familiar.</p>
+    </div>
+    <div>
+      <h4>Horário</h4>
+      <p class="rodape-texto">Segunda a sábado: <span class="ph">[PREENCHER: horário]</span><br>Domingo: <span class="ph">[PREENCHER: horário]</span></p>
+    </div>
+    <div>
+      <h4>Contactos</h4>
+      <p class="rodape-texto"><span class="ph">[PREENCHER: morada]</span>, Viseu<br><span class="ph">[PREENCHER: telefone]</span></p>
+    </div>
+  </div>
+  <div class="rodape-base">
+    <p>© <span id="ano">2026</span> Cantinho do Alex — Viseu · Demo gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a></p>
+    <p>Por aprovar — sem dados reais do negócio.</p>
+  </div>
 </footer>
 
+<a class="wa-flutuante" href="#reservas" aria-label="Pedidos por WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4 0-.5.1-.7l.5-.6c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.2 3.8a11.6 11.6 0 0 0 4.5 4.3c1.7.9 3 1.1 3.8 1 .6-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+<a class="subir" href="#topo" aria-label="Voltar ao topo">↑</a>
+
+<script>
+// Menu móvel
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const aberto = menu.classList.toggle('aberto');
+  burger.classList.toggle('ativo', aberto);
+  burger.setAttribute('aria-expanded', aberto);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('aberto'); burger.classList.remove('ativo');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// Cabeçalho com estado "scrolled" + botão de subir
+const header = document.querySelector('.site-header');
+const subir = document.querySelector('.subir');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+  subir.classList.toggle('visivel', window.scrollY > 600);
+}, { passive: true });
+
+// Animações de entrada
+const obs = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Separadores da ementa
+document.querySelectorAll('.sep').forEach(botao => {
+  botao.addEventListener('click', () => {
+    document.querySelectorAll('.sep').forEach(b => b.classList.remove('ativo'));
+    document.querySelectorAll('.painel-carta').forEach(p => p.classList.remove('ativo'));
+    botao.classList.add('ativo');
+    document.getElementById(botao.dataset.tab).classList.add('ativo');
+  });
+});
+
+// Formulário de reserva (demo — não envia)
+document.getElementById('form-reserva').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const f = ev.target;
+  if (!f.checkValidity()) { f.reportValidity(); return; }
+  document.getElementById('form-ok').classList.add('visivel');
+  f.reset();
+});
+
+// Ano do rodapé
+document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

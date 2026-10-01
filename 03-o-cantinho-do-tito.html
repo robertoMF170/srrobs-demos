@@ -3,115 +3,467 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')}catch(e){}})();</script>
-<title>O Cantinho do Tito — Restaurante em Viseu</title>
+<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')catch(e){}})();</script>
+<title>O Cantinho do Tito — Cozinha da Beira no coração de Viseu</title>
+<meta name="description" content="O Cantinho do Tito, Viseu — cozinha tradicional da Beira, pratos generosos e mesa de família. Reservas, eventos e pedidos por WhatsApp.">
+<meta name="theme-color" content="#7a1f1f">
+<meta property="og:title" content="O Cantinho do Tito — Viseu">
+<meta property="og:description" content="Cozinha tradicional da Beira, no coração de Viseu. Reserve a sua mesa.">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--vinho:#7a1f1f;--creme:#faf5ee;--escuro:#2b2420;--dourado:#c99a3f}
+:root{
+  --vinho:#7a1f1f;--vinho-esc:#5c1414;--dourado:#c99a3f;--dourado-esc:#a97c25;
+  --creme:#faf5ee;--areia:#f3e9d8;--linha:#e5d5bd;--ink:#2b2420;
+  --texto:#5b4f44;--suave:#8c7a66;--branco:#fff;
+  --sombra:0 18px 46px rgba(43,36,32,.12);--radius:12px;
+  --font-d:"Cormorant Garamond",Georgia,serif;--font-b:"Inter",system-ui,sans-serif;--max:1120px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--creme);color:var(--escuro);line-height:1.6}
-.container{max-width:1000px;margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:Georgia,serif;line-height:1.2}
-header{background:linear-gradient(rgba(30,20,15,.75),rgba(30,20,15,.75)),var(--vinho);color:#fff;text-align:center;padding:70px 20px 60px}
-header h1{font-size:2.4rem;margin-bottom:8px}
-header p{opacity:.9;max-width:520px;margin:0 auto 20px}
-.rating{color:var(--dourado);font-weight:600;letter-spacing:1px}
-.btn{display:inline-block;background:var(--dourado);color:#1e140f;padding:12px 28px;border-radius:6px;text-decoration:none;font-weight:600;margin-top:15px}
-nav{background:var(--escuro);position:sticky;top:0;z-index:9}
-nav a{display:inline-block;color:#fff;text-decoration:none;padding:12px 14px;font-size:.9rem}
-section{padding:55px 0}
-.titulo{text-align:center;margin-bottom:35px}
-.titulo h2{color:var(--vinho);font-size:1.8rem}
-.titulo p{color:#6b5d52}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.card{background:#fff;border-radius:10px;padding:24px;box-shadow:0 3px 12px rgba(0,0,0,.07);border-top:3px solid var(--dourado)}
-.card h3{margin-bottom:8px}
-.sobre{background:#fff}
-.sobre .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:35px;align-items:center}
-.sobre .imagem{background:linear-gradient(135deg,var(--vinho),var(--dourado));border-radius:12px;min-height:240px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;text-align:center;padding:20px}
-form{background:#fff;padding:28px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.07);display:grid;gap:14px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #d8cfc4;border-radius:6px;font:inherit;background:var(--creme)}
-button{background:var(--vinho);color:#fff;border:0;padding:13px;border-radius:6px;font:inherit;font-weight:600;cursor:pointer}
-.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:25px;text-align:center}
-.info div{background:#fff;padding:16px;border-radius:8px;font-size:.9rem}
-footer{background:var(--escuro);color:#cfc4b8;text-align:center;padding:25px 20px;font-size:.85rem}
-.ph{background:#f3e9d8;padding:1px 6px;border-radius:4px;font-style:italic}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{font-family:var(--font-b);color:var(--texto);background:var(--creme);line-height:1.72;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--vinho)}
+h1,h2,h3,h4{font-family:var(--font-d);color:var(--ink);line-height:1.16;font-weight:600}
+.container{max-width:var(--max);margin:0 auto;padding:0 22px}
+.titulo-sec{text-align:center;max-width:680px;margin:0 auto clamp(2.4rem,5vw,3.4rem)}
+.ornamento{display:flex;align-items:center;justify-content:center;gap:.85rem;margin-bottom:1.15rem}
+.ornamento::before,.ornamento::after{content:"";width:52px;height:1.5px;background:var(--dourado)}
+.ornamento span{color:var(--dourado-esc);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;font-weight:700}
+.sec-titulo{font-size:clamp(2.05rem,4.5vw,3.15rem);margin-bottom:.9rem}
+.sec-lead{font-size:1.06rem;color:var(--suave)}
+section{padding:clamp(3.6rem,8vw,5.8rem) 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.98rem 2.05rem;border-radius:8px;font-family:var(--font-b);font-weight:600;font-size:.94rem;letter-spacing:.03em;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.btn-ouro{background:var(--dourado);color:#241805;box-shadow:0 12px 30px rgba(201,154,63,.35)}
+.btn-ouro:hover{background:#d9ab52;transform:translateY(-2px)}
+.btn-vinho{background:var(--vinho);color:#fff;box-shadow:0 12px 30px rgba(122,31,31,.3)}
+.btn-vinho:hover{background:var(--vinho-esc);transform:translateY(-2px)}
+.btn-linha-clara{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-linha-clara:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+:focus-visible{outline:3px solid var(--dourado);outline-offset:3px;border-radius:6px}
+.ph{background:var(--areia);border:1px dashed #cdb98e;border-radius:6px;padding:.05em .45em;font-size:.82em;color:#8a6d3b;font-style:italic}
+
+/* ---------- CABEÇALHO ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(250,245,238,.95);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(43,36,32,.09);border-color:var(--linha)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.95rem 22px;max-width:var(--max);margin:0 auto}
+.marca{display:flex;flex-direction:column;text-decoration:none;line-height:1.12}
+.marca b{font-family:var(--font-d);font-size:1.42rem;color:var(--vinho);letter-spacing:.3px;display:block}
+.marca span{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--dourado-esc);font-weight:700}
+.nav-links{display:flex;align-items:center;gap:.3rem;list-style:none}
+.nav-links a{display:block;padding:.55rem .85rem;border-radius:8px;text-decoration:none;color:var(--ink);font-size:.92rem;font-weight:500;transition:background .2s ease,color .2s ease}
+.nav-links a:hover{background:var(--areia);color:var(--vinho)}
+.nav-cta{margin-left:.55rem;padding:.72rem 1.45rem;font-size:.88rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:.6rem}
+.burger span{width:24px;height:2.5px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+.burger.ativo span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.ativo span:nth-child(2){opacity:0}
+.burger.ativo span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(rgba(35,22,18,.78),rgba(35,22,18,.82)),url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&auto=format&fit=crop") center/cover no-repeat}
+.hero-conteudo{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:7rem 22px 5.5rem}
+.hero .ornamento::before,.hero .ornamento::after{background:rgba(255,255,255,.5)}
+.hero .ornamento span{color:#e9c98c}
+.hero h1{color:#fff;font-size:clamp(2.7rem,6.5vw,4.9rem);margin-bottom:1.3rem;font-weight:600}
+.hero h1 em{font-style:italic;color:#e9c98c}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.3rem);color:rgba(255,255,255,.88);margin:0 auto 1.6rem;max-width:56ch}
+.nota-estrela{display:inline-flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:.62rem 1.35rem;border-radius:999px;font-size:.88rem;margin-bottom:1.75rem}
+.nota-estrela b{color:#e9c98c;letter-spacing:2px}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:.95rem;justify-content:center}
+
+/* ---------- DESTAQUES RÁPIDOS ---------- */
+.rapidos{background:var(--vinho);color:#fff}
+.rapidos .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.5rem;padding-top:1.6rem;padding-bottom:1.6rem}
+.rapido{display:flex;align-items:center;gap:.95rem}
+.rapido .ic{width:46px;height:46px;flex:0 0 46px;border-radius:10px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.rapido b{display:block;font-size:.92rem;letter-spacing:.03em}
+.rapido small{opacity:.82;font-size:.8rem}
+
+/* ---------- A CASA ---------- */
+.casa{background:var(--creme)}
+.casa-grelha{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.2rem,5vw,4.5rem);align-items:center}
+.casa-img{position:relative}
+.casa-img img{border-radius:var(--radius);box-shadow:var(--sombra);width:100%;height:520px;object-fit:cover}
+.casa-img .moldura{position:absolute;inset:16px;border:1.5px solid rgba(255,255,255,.55);border-radius:8px;pointer-events:none}
+.casa-texto p{margin-bottom:1.05rem}
+.citacao{border-left:3px solid var(--dourado);padding:.35rem 0 .35rem 1.35rem;margin:1.75rem 0;font-family:var(--font-d);font-size:1.32rem;font-style:italic;color:var(--ink);line-height:1.5}
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;margin-top:2rem}
+.numero{text-align:center;background:var(--branco);border:1px solid var(--linha);border-radius:var(--radius);padding:1.35rem 1rem}
+.numero b{display:block;font-family:var(--font-d);font-size:2rem;color:var(--vinho);line-height:1.1}
+.numero small{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);font-weight:600}
+
+/* ---------- CARTA ---------- */
+.carta{background:var(--branco)}
+.carta-grelha{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.carta-coluna h3{font-size:1.42rem;color:var(--vinho);margin-bottom:.35rem}
+.carta-coluna .sub-cat{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado-esc);font-weight:700;margin-bottom:1.45rem;display:block}
+.linha-prato{display:flex;align-items:baseline;gap:.85rem;padding:.85rem 0;border-bottom:1px dashed var(--linha)}
+.linha-prato:last-child{border-bottom:0}
+.linha-prato .nome{font-weight:600;color:var(--ink);font-size:.98rem}
+.linha-prato .nome small{display:block;font-weight:400;font-size:.83rem;color:var(--suave)}
+.linha-prato .pontilhado{flex:1;border-bottom:2px dotted var(--linha);transform:translateY(-4px)}
+.linha-prato .preco{font-family:var(--font-d);font-size:1.16rem;color:var(--vinho);font-weight:700;white-space:nowrap}
+.carta-nota{grid-column:1/-1;background:var(--creme);border:1px solid var(--linha);border-radius:var(--radius);padding:1.75rem 1.9rem;text-align:center;margin-top:.75rem}
+.carta-nota h4{font-size:1.22rem;color:var(--vinho);margin-bottom:.55rem}
+.nota-exemplo{font-size:.82rem;color:var(--suave);margin-top:1.5rem;font-style:italic;text-align:center}
+
+/* ---------- EVENTOS ---------- */
+.eventos{position:relative;color:#fff;overflow:hidden}
+.eventos-bg{position:absolute;inset:0;background:linear-gradient(rgba(92,20,20,.88),rgba(92,20,20,.92)),url("https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1600&q=80&auto=format&fit=crop") center/cover no-repeat}
+.eventos .container{position:relative;z-index:2}
+.eventos .sec-titulo{color:#fff}
+.eventos .sec-lead{color:rgba(255,255,255,.82)}
+.eventos .titulo-sec .ornamento::before,.eventos .titulo-sec .ornamento::after{background:rgba(255,255,255,.5)}
+.eventos .titulo-sec .ornamento span{color:#e9c98c}
+.grelha-eventos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.35rem;margin-top:2.8rem}
+.evento{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:1.85rem 1.75rem;transition:background .25s ease,transform .25s ease}
+.evento:hover{background:rgba(255,255,255,.17);transform:translateY(-5px)}
+.evento .ic{font-size:1.65rem;margin-bottom:1rem}
+.evento h3{color:#fff;font-size:1.18rem;margin-bottom:.5rem}
+.evento p{font-size:.92rem;color:rgba(255,255,255,.85)}
+.eventos-cta{display:flex;flex-wrap:wrap;gap:.95rem;justify-content:center;margin-top:2.8rem}
+
+/* ---------- GALERIA ---------- */
+.galeria{background:var(--creme)}
+.grelha-galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grelha-galeria figure{border-radius:var(--radius);overflow:hidden;box-shadow:var(--sombra)}
+.grelha-galeria img{width:100%;height:260px;object-fit:cover;transition:transform .55s ease}
+.grelha-galeria figure:hover img{transform:scale(1.07)}
+
+/* ---------- RESERVAS ---------- */
+.reservas{background:var(--branco)}
+.reservas-grelha{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:start}
+.form-reserva{background:var(--creme);border:1px solid var(--linha);border-radius:var(--radius);padding:clamp(1.6rem,3vw,2.4rem)}
+.form-grelha{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}
+.campo{display:flex;flex-direction:column;gap:.4rem}
+.campo.full{grid-column:1/-1}
+.campo label{font-size:.82rem;font-weight:600;color:var(--ink)}
+.campo input,.campo select,.campo textarea{padding:.85rem 1rem;border:1.5px solid var(--linha);border-radius:8px;font:inherit;font-size:.95rem;background:var(--branco);transition:border-color .2s ease,box-shadow .2s ease}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--vinho);box-shadow:0 0 0 4px rgba(122,31,31,.13);outline:none}
+.form-reserva .btn{width:100%;margin-top:1.35rem;padding:1.08rem 1.9rem}
+.form-nota{font-size:.82rem;color:var(--suave);margin-top:.95rem;text-align:center}
+.form-ok{display:none;background:#eaf3ec;border:1.5px solid #9dc3a6;color:#2f5d3c;border-radius:10px;padding:1rem 1.15rem;font-size:.93rem;margin-top:1.15rem}
+.form-ok.visivel{display:block}
+.reserva-lateral{display:grid;gap:1.15rem}
+.caixa{background:var(--creme);border:1px solid var(--linha);border-radius:var(--radius);padding:1.7rem 1.8rem}
+.caixa h4{display:flex;align-items:center;gap:.6rem;font-size:1.18rem;color:var(--vinho);margin-bottom:.6rem}
+.caixa p{font-size:.93rem}
+.caixa .btn{margin-top:1rem}
+.horario{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:.35rem}
+.horario td{padding:.46rem 0;border-bottom:1px solid var(--linha)}
+.horario td:last-child{text-align:right;font-weight:600;color:var(--ink)}
+.horario tr:last-child td{border-bottom:0}
+
+/* ---------- RODAPÉ ---------- */
+.rodape{background:var(--ink);color:rgba(255,255,255,.78)}
+.rodape-grelha{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.2rem;padding-top:clamp(2.6rem,5vw,3.8rem);padding-bottom:2.2rem}
+.rodape .marca b{color:#fff}
+.rodape .marca span{color:#e9c98c}
+.rodape h4{color:#fff;font-size:1.05rem;margin-bottom:.75rem;font-family:var(--font-d)}
+.rodape-texto{font-size:.92rem;line-height:1.75}
+.rodape-texto .ph{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.75)}
+.rodape-base{border-top:1px solid rgba(255,255,255,.12);padding:1.35rem 22px;text-align:center;font-size:.82rem;color:rgba(255,255,255,.6)}
+.rodape-base a{color:#e9c98c}
+
+/* ---------- FLUTUANTES + ANIMAÇÕES ---------- */
+.wa-flutuante{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(37,211,102,.42);transition:transform .25s ease}
+.wa-flutuante:hover{transform:scale(1.08)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visivel{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+
+/* ---------- RESPONSIVO ---------- */
+@media(max-width:920px){.casa-grelha,.carta-grelha,.reservas-grelha{grid-template-columns:1fr}.casa-img img{height:400px}.grelha-galeria{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.nav-links{position:fixed;inset:0 0 auto;top:64px;flex-direction:column;align-items:stretch;background:var(--branco);border-bottom:1px solid var(--linha);padding:1.1rem;gap:.35rem;transform:translateY(-130%);transition:transform .35s ease;box-shadow:var(--sombra)}.nav-links.aberto{transform:none}.nav-links a{padding:.85rem 1rem}.nav-cta{margin-left:0;margin-top:.5rem}.burger{display:flex}.hero{min-height:76vh}.hero-conteudo{padding-top:5.5rem}.form-grelha{grid-template-columns:1fr}.rodape-grelha{grid-template-columns:1fr;gap:1.6rem}.grelha-galeria{grid-template-columns:1fr}.numeros{grid-template-columns:1fr}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "O Cantinho do Tito",
+  "servesCuisine": "Cozinha tradicional portuguesa (Beira)",
+  "address": {"@type": "PostalAddress", "addressLocality": "Viseu", "addressCountry": "PT", "streetAddress": "[PREENCHER: morada]"},
+  "telephone": "[PREENCHER: telefone]",
+  "priceRange": "€€",
+  "url": ""
+}
+</script>
 </head>
 <body>
 <!-- DEMO GRATUITA - POR APROVAR - nada enviado ao cliente -->
 
-<header>
-  <h1>O Cantinho do Tito</h1>
-  <p>Cozinha caseira e sabores da região, no coração de Viseu. Bem-vindo ao nosso cantinho.</p>
-  <div class="rating">★★★★★ 4,5 / 5 no Tripadvisor</div>
-  <a href="#marcacao" class="btn">Reservar Mesa</a>
+<header class="site-header" id="topo">
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="marca" href="#topo"><b>O Cantinho do Tito</b><span>Cozinha da Beira · Viseu</span></a>
+    <ul class="nav-links" id="menu">
+      <li><a href="#casa">A Casa</a></li>
+      <li><a href="#carta">A Carta</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#reservas">Reservas</a></li>
+      <li><a class="btn btn-ouro nav-cta" href="#reservas">Reservar Mesa</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 </header>
 
-<nav>
-  <a href="#servicos">Serviços</a>
-  <a href="#sobre">Sobre Nós</a>
-  <a href="#marcacao">Reservas</a>
-  <a href="#contacto">Contacto</a>
-</nav>
-
-<section id="servicos">
-  <div class="container">
-    <div class="titulo">
-      <h2>Os Nossos Serviços</h2>
-      <p>Tudo o que precisa para uma boa refeição em família ou entre amigos</p>
-    </div>
-    <div class="grid">
-      <div class="card"><h3>🍽️ Ementa do Dia</h3><p>Pratos de cozinha tradicional portuguesa, confecionados diariamente com produtos frescos da região.</p></div>
-      <div class="card"><h3>👨‍👩‍👧 Grupos e Famílias</h3><p>Espaço acolhedor preparado para receber grupos. Reserve com antecedência para garantir a sua mesa.</p></div>
-      <div class="card"><h3>🥡 Take-Away</h3><p>Peça os seus pratos favoritos para levar. Ligue-nos e estará pronto à sua chegada.</p></div>
-      <div class="card"><h3>🎉 Eventos Privados</h3><p>Almoços de festa, celebrações e reuniões — fale connosco para preparar um menu à medida.</p></div>
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" role="img" aria-label="Sala do restaurante"></div>
+  <div class="hero-conteudo">
+    <div class="ornamento"><span>Desde sempre · Viseu</span></div>
+    <h1>A cozinha da Beira, <em>como manda a tradição</em></h1>
+    <p class="lead">Pratos generosos, receitas que passam de geração em geração e uma mesa onde toda a gente se sente em casa.</p>
+    <div class="nota-estrela"><b>★★★★★</b> 4,5 / 5 — avaliado por quem já se sentou à nossa mesa</div>
+    <div class="hero-acoes">
+      <a class="btn btn-ouro" href="#reservas">Reservar Mesa</a>
+      <a class="btn btn-linha-clara" href="#carta">Ver a Carta</a>
     </div>
   </div>
 </section>
 
-<section id="sobre" class="sobre">
+<div class="rapidos">
   <div class="container">
-    <div class="imagem">[ESPAÇO PARA FOTOGRAFIA DO RESTAURANTE]</div>
-    <div>
-      <h2 style="color:var(--vinho);margin-bottom:15px">Sobre o Cantinho</h2>
-      <p>No <strong>O Cantinho do Tito</strong>, acreditamos que comer bem é sentir-se em casa. Servimos pratos generosos, com o sabor autêntico da cozinha da Beira, num ambiente simples e familiar.</p>
-      <p style="margin-top:12px">Seja para um almoço rápido, um jantar demorado ou uma celebração em família, estamos prontos para o receber de braços abertos — como manda a tradição.</p>
-    </div>
+    <div class="rapido"><span class="ic">🔥</span><div><b>Forno de lenha</b><small>Assados como antigamente</small></div></div>
+    <div class="rapido"><span class="ic">🍷</span><div><b>Vinhos do Dão</b><small>Seleção da região</small></div></div>
+    <div class="rapido"><span class="ic">👨‍👩‍👧</span><div><b>Mesas de família</b><small>Espaço para grupos</small></div></div>
+    <div class="rapido"><span class="ic">💬</span><div><b>Reservas por WhatsApp</b><small>Resposta rápida</small></div></div>
   </div>
-</section>
+</div>
 
-<section id="marcacao">
+<!-- ===== A CASA ===== -->
+<section class="casa" id="casa">
   <div class="container">
-    <div class="titulo">
-      <h2>Marque a Sua Mesa</h2>
-      <p>Preencha o formulário ou contacte-nos diretamente</p>
-    </div>
-    <form action="#" onsubmit="alert('Demonstração: formulário não funcional.');return false;">
-      <input type="text" placeholder="Nome" required>
-      <input type="tel" placeholder="Telefone" required>
-      <div class="grid" style="gap:14px">
-        <input type="date" required>
-        <select><option>2 pessoas</option><option>3 pessoas</option><option>4 pessoas</option><option>5+ pessoas</option></select>
+    <div class="casa-grelha">
+      <div class="casa-img reveal">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80&auto=format&fit=crop" alt="Sala de O Cantinho do Tito preparada para o serviço" loading="lazy">
+        <div class="moldura" aria-hidden="true"></div>
       </div>
-      <textarea rows="3" placeholder="Mensagem (opcional) — pedidos especiais, alergias, etc."></textarea>
-      <button type="submit">Pedir Reserva</button>
-    </form>
+      <div class="casa-texto reveal">
+        <div class="ornamento" style="justify-content:flex-start"><span>A nossa casa</span></div>
+        <h2 class="sec-titulo">Onde comer bem<br>é sentir-se em casa</h2>
+        <p>No <strong>O Cantinho do Tito</strong> acreditamos que uma boa refeição começa muito antes do prato chegar à mesa: começa no produto escolhido de manhã, no fogo aceso cedo e na paciência de quem cozinha sem pressa.</p>
+        <p class="citacao">«Servimos pratos generosos, com o sabor autêntico da cozinha da Beira — num ambiente simples e familiar.»</p>
+        <p>Seja um almoço rápido, um jantar demorado ou uma celebração em família, estamos prontos para o receber de braços abertos — como manda a tradição.</p>
+        <div class="numeros">
+          <div class="numero"><b>100%</b><small>Cozinha de raiz</small></div>
+          <div class="numero"><b>Diário</b><small>Menu do dia</small></div>
+          <div class="numero"><b>Grupos</b><small>Até [PREENCHER] pessoas</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== A CARTA ===== -->
+<section class="carta" id="carta">
+  <div class="container">
+    <div class="titulo-sec reveal">
+      <div class="ornamento"><span>A nossa carta</span></div>
+      <h2 class="sec-titulo">Sabores da Beira, à sua mesa</h2>
+      <p class="sec-lead">Pratos de sempre, feitos com o que a estação dá de melhor.</p>
+    </div>
+    <div class="carta-grelha">
+      <div class="carta-coluna reveal">
+        <h3>Para começar</h3>
+        <span class="sub-cat">Entradas &amp; Sopas</span>
+        <div class="linha-prato"><div class="nome">Sopa da horta<small>Legumes da estação, todos os dias</small></div><div class="pontilhado"></div><div class="preco">3,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Caldo de castanhas<small>Receita de inverno da Beira</small></div><div class="pontilhado"></div><div class="preco">4,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Chouriço assado na brasa<small>Do forno para a mesa</small></div><div class="pontilhado"></div><div class="preco">5,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Queijo da serra com marmelada<small>Para partilhar</small></div><div class="pontilhado"></div><div class="preco">6,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Tábua do Tito<small>Presunto, chouriça, queijo e azeitonas</small></div><div class="pontilhado"></div><div class="preco">8,50 €</div></div>
+      </div>
+      <div class="carta-coluna reveal">
+        <h3>Os nossos assados</h3>
+        <span class="sub-cat">Do Forno de Lenha</span>
+        <div class="linha-prato"><div class="nome">Chanfana à moda da Beira<small>Cozida devagar, como deve ser</small></div><div class="pontilhado"></div><div class="preco">13,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Cabrito no forno de lenha<small>Aos sábados e domingos</small></div><div class="pontilhado"></div><div class="preco">14,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Bacalhau à Zé do Pipo<small>Com batata a rodelas e cebola</small></div><div class="pontilhado"></div><div class="preco">13,00 €</div></div>
+        <div class="linha-prato"><div class="nome">Bife à Café<small>Com ovo a cavalo e batata palha</small></div><div class="pontilhado"></div><div class="preco">11,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Arroz de pato à moda da casa<small>Gratinado no forno</small></div><div class="pontilhado"></div><div class="preco">12,50 €</div></div>
+      </div>
+      <div class="carta-coluna reveal">
+        <h3>Doce final</h3>
+        <span class="sub-cat">Sobremesas da Casa</span>
+        <div class="linha-prato"><div class="nome">Pudim do Tito<small>Receita da família</small></div><div class="pontilhado"></div><div class="preco">3,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Aletria queimada<small>Com canela em pau</small></div><div class="pontilhado"></div><div class="preco">3,00 €</div></div>
+        <div class="linha-prato"><div class="nome">Tigelada de canela<small>Doce tradicional da região</small></div><div class="pontilhado"></div><div class="preco">3,50 €</div></div>
+      </div>
+      <div class="carta-coluna reveal">
+        <h3>Da adega</h3>
+        <span class="sub-cat">Vinhos &amp; Bebidas</span>
+        <div class="linha-prato"><div class="nome">Vinho do Dão (garrafa)<small>Tinto ou branco da região</small></div><div class="pontilhado"></div><div class="preco">12,00 €</div></div>
+        <div class="linha-prato"><div class="nome">Vinho da casa (jarra 0,5 L)<small>Para a refeição inteira</small></div><div class="pontilhado"></div><div class="preco">4,50 €</div></div>
+        <div class="linha-prato"><div class="nome">Imperial<small>Da pressão</small></div><div class="pontilhado"></div><div class="preco">1,20 €</div></div>
+        <div class="linha-prato"><div class="nome">Café da casa<small>Torrado na região</small></div><div class="pontilhado"></div><div class="preco">0,80 €</div></div>
+      </div>
+      <div class="carta-nota reveal">
+        <h4>🍽️ Menu do Dia — almoços de dias úteis</h4>
+        <p>Sopa + prato do dia + sobremesa ou café, com preço de bairro. Pergunte ao balcão pelo menu do dia — muda todos os dias.</p>
+      </div>
+    </div>
+    <p class="nota-exemplo">Pratos e valores de exemplo para demonstração — a confirmar com o restaurante.</p>
   </div>
 </section>
 
-<section id="contacto" style="padding-top:0">
+<!-- ===== EVENTOS ===== -->
+<section class="eventos" id="eventos">
+  <div class="eventos-bg" role="img" aria-label="Mesa de celebração"></div>
   <div class="container">
-    <div class="info">
-      <div><strong>📍 Morada</strong><br><span class="ph">[PREENCHER: Morada]</span>, Viseu</div>
-      <div><strong>📞 Telefone</strong><br><span class="ph">[PREENCHER: Telefone]</span></div>
-      <div><strong>🕒 Horário</strong><br><span class="ph">[PREENCHER: Horário]</span></div>
+    <div class="titulo-sec reveal">
+      <div class="ornamento"><span>Eventos &amp; Celebrações</span></div>
+      <h2 class="sec-titulo">A sua ocasião, a nossa mesa</h2>
+      <p class="sec-lead">Aniversários, baptizados, almoços de família ou encontros de amigos — tratamos de tudo, do aperitivo à sobremesa.</p>
+    </div>
+    <div class="grelha-eventos">
+      <div class="evento reveal"><div class="ic">🎂</div><h3>Aniversários</h3><p>Menu à medida, mesa decorada e bolo da casa se quiserem — diga-nos a ocasião.</p></div>
+      <div class="evento reveal"><div class="ic">👨‍👩‍👧‍👦</div><h3>Almoços de Família</h3><p>Mesas grandes, pratos para partilhar e a tranquilidade de quem chega a casa.</p></div>
+      <div class="evento reveal"><div class="ic">🤝</div><h3>Empresas &amp; Grupos</h3><p>Almoços de trabalho e jantares de equipa, com faturação e menu combinado à frente.</p></div>
+      <div class="evento reveal"><div class="ic">🍷</div><h3>Mesas de Festa</h3><p>Baptizados, comunhões e casamentos modestos — com vinhos do Dão para brindar.</p></div>
+    </div>
+    <div class="eventos-cta reveal">
+      <a class="btn btn-ouro" href="#reservas">Pedir Orçamento</a>
+      <a class="btn btn-linha-clara" href="#reservas">Falar Connosco</a>
+    </div>
+  </div>
+</section>
+<!-- ===== GALERIA ===== -->
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="titulo-sec reveal">
+      <div class="ornamento"><span>Galeria</span></div>
+      <h2 class="sec-titulo">Um cantinho com alma</h2>
+      <p class="sec-lead">Madeira, vinho bom e comida a sair do forno.</p>
+    </div>
+    <div class="grelha-galeria reveal">
+      <figure><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80&auto=format&fit=crop" alt="Sala do restaurante" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&auto=format&fit=crop" alt="Carne assada do forno de lenha" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80&auto=format&fit=crop" alt="Prato de bacalhau" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&auto=format&fit=crop" alt="Vinho do Dão servido à mesa" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80&auto=format&fit=crop" alt="Sobremesa da casa" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80&auto=format&fit=crop" alt="Café para terminar" loading="lazy"></figure>
     </div>
   </div>
 </section>
 
-<footer>
-  <p><strong>O Cantinho do Tito</strong> — Viseu, Portugal</p>
-  <p>Demonstração gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a> · Por aprovar</p>
+<!-- ===== RESERVAS ===== -->
+<section class="reservas" id="reservas">
+  <div class="container">
+    <div class="titulo-sec reveal">
+      <div class="ornamento"><span>Reservas</span></div>
+      <h2 class="sec-titulo">Marque a sua mesa</h2>
+      <p class="sec-lead">Preencha o pedido e confirmamos a disponibilidade — ou fale connosco diretamente por WhatsApp.</p>
+    </div>
+    <div class="reservas-grelha">
+      <form class="form-reserva reveal" id="form-reserva" novalidate>
+        <div class="form-grelha">
+          <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" type="text" required placeholder="O seu nome" autocomplete="name"></div>
+          <div class="campo"><label for="tel">Telefone</label><input id="tel" name="tel" type="tel" required placeholder="9XX XXX XXX" autocomplete="tel"></div>
+          <div class="campo"><label for="data">Data</label><input id="data" name="data" type="date" required></div>
+          <div class="campo"><label for="hora">Hora</label><input id="hora" name="hora" type="time" required></div>
+          <div class="campo"><label for="pessoas">Pessoas</label><select id="pessoas" name="pessoas"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></div>
+          <div class="campo"><label for="ocasiao">Ocasião</label><select id="ocasiao" name="ocasiao"><option value="">—</option><option>Aniversário</option><option>Evento de família</option><option>Almoço de empresa</option><option>Outro</option></select></div>
+          <div class="campo full"><label for="obs">Mensagem (opcional)</label><textarea id="obs" name="obs" rows="3" placeholder="Pedidos especiais, alergias, celebrações…"></textarea></div>
+        </div>
+        <button class="btn btn-vinho" type="submit">Pedir Reserva</button>
+        <p class="form-nota">Demo — o formulário será ligado ao restaurante após aprovação.</p>
+        <div class="form-ok" id="form-ok">✅ Pedido registado! (Demonstração — nada foi enviado.) Em produção, confirmamos a sua mesa por telefone ou WhatsApp.</div>
+      </form>
+      <div class="reserva-lateral reveal" id="contacto">
+        <div class="caixa">
+          <h4>💬 Reservas por WhatsApp</h4>
+          <p>Uma mensagem chega: diga-nos o dia, a hora e quantas pessoas são — nós tratamos do resto.</p>
+          <!-- EM PRODUÇÃO: ligar a https://wa.me/351<PREENCHER> -->
+          <a class="btn btn-ouro" href="#reservas">Pedir por WhatsApp</a>
+        </div>
+        <div class="caixa">
+          <h4>📍 Onde estamos</h4>
+          <p><span class="ph">[PREENCHER: morada completa]</span><br>Viseu, Portugal<br><br><strong>📞</strong> <span class="ph">[PREENCHER: telefone]</span><br><strong>✉️</strong> <span class="ph">[PREENCHER: email]</span></p>
+          <p style="margin-top:.8rem"><a href="https://www.google.com/maps/search/restaurantes+Viseu" target="_blank" rel="noopener">Abrir no Google Maps →</a></p>
+        </div>
+        <div class="caixa">
+          <h4>🕐 Horário</h4>
+          <table class="horario">
+            <tr><td>Segunda</td><td>Encerrado</td></tr>
+            <tr><td>Terça a sexta</td><td><span class="ph">[PREENCHER]</span></td></tr>
+            <tr><td>Sábado</td><td><span class="ph">[PREENCHER]</span></td></tr>
+            <tr><td>Domingo</td><td><span class="ph">[PREENCHER]</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <div class="container rodape-grelha">
+    <div>
+      <a class="marca" href="#topo"><b>O Cantinho do Tito</b><span>Cozinha da Beira · Viseu</span></a>
+      <p class="rodape-texto">Pratos generosos, com o sabor autêntico da cozinha da Beira, num ambiente simples e familiar. Comer bem é sentir-se em casa.</p>
+    </div>
+    <div>
+      <h4>Horário</h4>
+      <p class="rodape-texto">Terça a domingo: <span class="ph">[PREENCHER: horário]</span><br>Segunda: encerrado</p>
+    </div>
+    <div>
+      <h4>Contactos</h4>
+      <p class="rodape-texto"><span class="ph">[PREENCHER: morada]</span>, Viseu<br><span class="ph">[PREENCHER: telefone]</span></p>
+    </div>
+  </div>
+  <div class="rodape-base">
+    <p>© <span id="ano">2026</span> O Cantinho do Tito — Viseu · Demo gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a></p>
+    <p>Por aprovar — sem dados reais do negócio.</p>
+  </div>
 </footer>
+
+<a class="wa-flutuante" href="#reservas" aria-label="Pedidos por WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4 0-.5.1-.7l.5-.6c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.2 3.8a11.6 11.6 0 0 0 4.5 4.3c1.7.9 3 1.1 3.8 1 .6-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+// Menu móvel
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const aberto = menu.classList.toggle('aberto');
+  burger.classList.toggle('ativo', aberto);
+  burger.setAttribute('aria-expanded', aberto);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('aberto'); burger.classList.remove('ativo');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// Cabeçalho com estado "scrolled"
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// Animações de entrada
+const obs = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Formulário de reserva (demo — não envia)
+document.getElementById('form-reserva').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const f = ev.target;
+  if (!f.checkValidity()) { f.reportValidity(); return; }
+  document.getElementById('form-ok').classList.add('visivel');
+  f.reset();
+});
+
+// Ano do rodapé
+document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

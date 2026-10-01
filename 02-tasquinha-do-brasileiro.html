@@ -3,142 +3,438 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')}catch(e){}})();</script>
-<title>Tasquinha do Brasileiro — Restaurante em Viseu</title>
-<meta name="description" content="Tasquinha do Brasileiro — cozinha caseira em Viseu. Almoços, jantares e takeaway. Marque a sua mesa.">
+<script>(function(){if(location.protocol==='file:')return;try{if(sessionStorage.getItem('srrobs_demo')!=='ok')location.replace('index.html')catch(e){}})();</script>
+<title>Tasquinha do Brasileiro — Cozinha luso-brasileira em Viseu</title>
+<meta name="description" content="Tasquinha do Brasileiro, Viseu — cozinha caseira com alma luso-brasileira. Picanha na brasa, feijoada, bacalhau. Reservas e pedidos por WhatsApp.">
+<meta name="theme-color" content="#2c5140">
+<meta property="og:title" content="Tasquinha do Brasileiro — Viseu">
+<meta property="og:description" content="Sabores caseiros, coração acolhedor. Reserve a sua mesa em Viseu.">
+<meta property="og:type" content="restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--tinto:#a63a24;--dourado:#c9962e;--creme:#faf5ec;--escuro:#241a12;--verde:#2c5140}
+:root{
+  --verde:#2c5140;--verde-esc:#1c382b;--dourado:#c9962e;--dourado-esc:#a97b1e;
+  --creme:#faf5ec;--areia:#f2e8d5;--linha:#e6d8bd;--tinto:#a63a24;
+  --ink:#241a12;--texto:#57493a;--suave:#8a765c;--branco:#fff;
+  --sombra:0 18px 46px rgba(36,26,18,.12);--radius:16px;
+  --font-d:"Playfair Display",Georgia,serif;--font-b:"DM Sans",system-ui,sans-serif;--max:1140px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--escuro);background:var(--creme);line-height:1.6}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header{position:sticky;top:0;z-index:10;background:rgba(250,245,236,.95);border-bottom:1px solid #e8ddcc}
-nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 0}
-.brand{font-family:Georgia,serif;font-weight:700;font-size:1.15rem;color:var(--tinto);text-decoration:none}
-nav a{color:var(--escuro);text-decoration:none;font-size:.9rem;padding:6px 10px;border-radius:6px}
-nav a:hover{background:#f0e6d6}
-.btn{display:inline-block;background:var(--tinto);color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:600;border:none;cursor:pointer;font-size:1rem}
-.btn.o{background:transparent;color:var(--tinto);border:2px solid var(--tinto)}
-.btn:hover{opacity:.9}
-.hero{background:linear-gradient(160deg,var(--verde),#16352a);color:#fff;text-align:center;padding:80px 20px}
-.hero h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.2;margin-bottom:14px}
-.hero p{max-width:560px;margin:0 auto 24px;opacity:.9}
-.stars{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 16px;border-radius:999px;font-size:.9rem;margin-bottom:24px}
-section{padding:60px 0}
-h2{font-family:Georgia,serif;font-size:1.7rem;margin-bottom:8px}
-.sub{color:#7a6a55;margin-bottom:32px}
-.cards{display:grid;gap:16px;grid-template-columns:1fr}
-.card{background:#fff;border:1px solid #eee2cd;border-radius:12px;padding:24px}
-.card .ic{font-size:1.8rem}
-.card h3{margin:10px 0 6px;font-size:1.05rem}
-.card p{font-size:.92rem;color:#5c4f3e}
-.strip{background:var(--tinto);color:#fff;text-align:center;padding:28px 20px}
-.strip .big{font-family:Georgia,serif;font-size:2.4rem}
-.review{font-style:italic;font-size:.9rem;opacity:.9;max-width:600px;margin:8px auto}
-.about{display:grid;gap:24px;align-items:center}
-.about .ph{background:linear-gradient(150deg,#f2e3c8,#e6cfa0);border-radius:12px;min-height:220px;display:flex;align-items:center;justify-content:center;color:#8a6d3b;font-size:.9rem;text-align:center;padding:20px}
-form .g{display:grid;gap:14px;grid-template-columns:1fr}
-label{font-size:.85rem;font-weight:600}
-input,select,textarea{width:100%;padding:12px;border:1px solid #d8c9b0;border-radius:8px;font:inherit;background:#fff}
-.note{font-size:.8rem;color:#8a7a63;margin-top:10px}
-.contact{display:grid;gap:24px}
-.info div{margin-bottom:14px}
-footer{background:var(--escuro);color:#cbbfa9;text-align:center;padding:28px 20px;font-size:.85rem}
-@media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}.about{grid-template-columns:1fr 1fr}.contact{grid-template-columns:1fr 1fr}.hero h1{font-size:3rem}form .g{grid-template-columns:1fr 1fr}}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{font-family:var(--font-b);color:var(--texto);background:var(--creme);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--tinto)}
+h1,h2,h3,h4{font-family:var(--font-d);color:var(--ink);line-height:1.18;font-weight:600}
+.container{max-width:var(--max);margin:0 auto;padding:0 22px}
+.rotulo{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado-esc);margin-bottom:.9rem}
+.rotulo::before{content:"";width:26px;height:2px;background:var(--dourado);border-radius:2px}
+.sec-titulo{font-size:clamp(1.95rem,4.2vw,3rem);margin-bottom:.85rem}
+.sec-lead{font-size:1.07rem;color:var(--suave);max-width:620px}
+section{padding:clamp(3.6rem,8vw,6rem) 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.98rem 1.95rem;border-radius:12px;font-family:var(--font-b);font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.btn-ouro{background:var(--dourado);color:#241805;box-shadow:0 12px 30px rgba(201,150,46,.35)}
+.btn-ouro:hover{background:#d9a63c;transform:translateY(-2px)}
+.btn-linha-clara{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-linha-clara:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.btn-verde{background:var(--verde);color:#fff}
+.btn-verde:hover{background:var(--verde-esc);transform:translateY(-2px)}
+:focus-visible{outline:3px solid var(--dourado);outline-offset:3px;border-radius:6px}
+.ph{background:var(--areia);border:1px dashed #cdb586;border-radius:6px;padding:.05em .45em;font-size:.82em;color:#8a6d3b;font-style:italic}
+
+/* ---------- CABEÇALHO ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(250,245,236,.94);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(36,26,18,.09);border-color:var(--linha)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.95rem 22px;max-width:var(--max);margin:0 auto}
+.marca{display:flex;flex-direction:column;text-decoration:none;line-height:1.15}
+.marca b{font-family:var(--font-d);font-size:1.3rem;color:var(--verde);letter-spacing:.2px;display:block}
+.marca span{font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dourado-esc);font-weight:700}
+.nav-links{display:flex;align-items:center;gap:.3rem;list-style:none}
+.nav-links a{display:block;padding:.55rem .85rem;border-radius:10px;text-decoration:none;color:var(--ink);font-size:.92rem;font-weight:500;transition:background .2s ease,color .2s ease}
+.nav-links a:hover{background:var(--areia);color:var(--verde)}
+.nav-cta{margin-left:.55rem;padding:.72rem 1.45rem;font-size:.9rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:.6rem}
+.burger span{width:24px;height:2.5px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+.burger.ativo span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.ativo span:nth-child(2){opacity:0}
+.burger.ativo span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(105deg,rgba(28,56,43,.94),rgba(28,56,43,.62) 58%,rgba(28,56,43,.38)),url("https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1920&q=80&auto=format&fit=crop") center/cover no-repeat}
+.hero-conteudo{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:7rem 22px 5.5rem;width:100%}
+.nota-estrela{display:inline-flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:.65rem 1.35rem;border-radius:999px;font-size:.88rem;font-weight:500;margin-bottom:1.55rem;backdrop-filter:blur(6px)}
+.nota-estrela b{color:#ffd479;letter-spacing:2px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6.4vw,4.8rem);max-width:15ch;margin-bottom:1.3rem;font-weight:700}
+.hero h1 em{font-style:italic;color:#ffd479}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.34rem);max-width:55ch;color:rgba(255,255,255,.9);margin-bottom:2.25rem}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:.95rem}
+
+/* ---------- FAIXA DE ESPECIALIDADES ---------- */
+.faixa{background:var(--verde);color:#fff;padding:1.15rem 0;overflow:hidden}
+.faixa p{text-align:center;font-size:.95rem;letter-spacing:.06em;opacity:.95}
+.faixa b{color:#ffd479;font-weight:700}
+
+/* ---------- SERVIÇOS ---------- */
+.servicos{background:var(--branco)}
+.grelha-6{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.35rem;margin-top:2.7rem}
+.cartao{background:var(--creme);border:1px solid var(--linha);border-radius:var(--radius);padding:1.9rem 1.75rem;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.cartao:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:var(--dourado)}
+.cartao .ic{font-size:1.9rem;width:58px;height:58px;border-radius:14px;background:var(--branco);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
+.cartao h3{font-size:1.18rem;margin-bottom:.55rem}
+.cartao p{font-size:.93rem}
+.cartao::after{content:"";position:absolute;right:-34px;top:-34px;width:96px;height:96px;border-radius:50%;background:rgba(201,150,46,.12)}
+
+/* ---------- DESTAQUES (CARTA) ---------- */
+.destaques{background:var(--creme)}
+.grelha-pratos{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.45rem;margin-top:2.7rem}
+.prato-destaque{background:var(--branco);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sombra);transition:transform .3s ease}
+.prato-destaque:hover{transform:translateY(-6px)}
+.prato-destaque img{height:200px;width:100%;object-fit:cover}
+.prato-corpo{padding:1.5rem 1.55rem}
+.prato-corpo .topo{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;margin-bottom:.5rem}
+.prato-corpo h3{font-size:1.13rem}
+.preco{font-family:var(--font-d);font-size:1.18rem;color:var(--tinto);white-space:nowrap;font-weight:700}
+.prato-corpo p{font-size:.9rem}
+.etiqueta{display:inline-block;background:var(--areia);color:var(--dourado-esc);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .75rem;border-radius:999px;margin-bottom:.7rem}
+.nota-exemplo{font-size:.82rem;color:var(--suave);margin-top:1.5rem;font-style:italic;text-align:center}
+
+/* ---------- TESTEMUNHOS ---------- */
+.testemunhos{background:var(--verde-esc);color:#fff;text-align:center}
+.testemunhos .sec-titulo{color:#fff}
+.testemunhos .sec-lead{color:rgba(255,255,255,.78);margin:0 auto}
+.grelha-testemunhos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.35rem;margin-top:2.7rem;text-align:left}
+.testemunho{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:1.85rem 1.8rem}
+.testemunho .estrelas{color:#ffd479;letter-spacing:3px;font-size:1.05rem;margin-bottom:.9rem}
+.testemunho p{font-style:italic;color:rgba(255,255,255,.9);font-size:.96rem}
+.testemunho footer{margin-top:1.15rem;font-size:.84rem;color:#ffd479;font-weight:700;background:none;padding:0;text-align:left}
+
+/* ---------- HISTÓRIA ---------- */
+.historia{background:var(--branco)}
+.historia-grelha{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2rem,5vw,4.4rem);align-items:center}
+.historia-img{position:relative}
+.historia-img img{border-radius:var(--radius);box-shadow:var(--sombra);width:100%;height:480px;object-fit:cover}
+.historia-selo{position:absolute;right:-14px;bottom:26px;background:var(--dourado);color:#241805;border-radius:var(--radius);padding:1.15rem 1.55rem;box-shadow:var(--sombra)}
+.historia-selo b{font-family:var(--font-d);font-size:1.55rem;display:block}
+.historia-selo small{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.passos{display:grid;gap:1.25rem;margin-top:1.9rem}
+.passo{display:flex;gap:1.1rem;align-items:flex-start}
+.passo .num{width:44px;height:44px;flex:0 0 44px;border-radius:12px;background:var(--verde);color:#fff;font-family:var(--font-d);font-size:1.12rem;display:flex;align-items:center;justify-content:center}
+.passo h4{font-size:1.03rem;margin-bottom:.25rem}
+.passo p{font-size:.92rem}
+
+/* ---------- RESERVA + CONTACTO ---------- */
+.reserva{background:var(--creme)}
+.reserva-grelha{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.8rem,4vw,3.4rem);align-items:start}
+.form-reserva{background:var(--branco);border:1px solid var(--linha);border-radius:var(--radius);padding:clamp(1.6rem,3vw,2.4rem);box-shadow:var(--sombra)}
+.form-grelha{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}
+.campo{display:flex;flex-direction:column;gap:.4rem}
+.campo.full{grid-column:1/-1}
+.campo label{font-size:.82rem;font-weight:700;color:var(--ink)}
+.campo input,.campo select,.campo textarea{padding:.85rem 1rem;border:1.5px solid var(--linha);border-radius:10px;font:inherit;font-size:.95rem;background:var(--creme);transition:border-color .2s ease,box-shadow .2s ease}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--verde);box-shadow:0 0 0 4px rgba(44,81,64,.14);outline:none}
+.form-reserva .btn{width:100%;margin-top:1.35rem;padding:1.08rem 1.9rem}
+.form-nota{font-size:.82rem;color:var(--suave);margin-top:.95rem;text-align:center}
+.form-ok{display:none;background:#eaf3ec;border:1.5px solid #9dc3a6;color:#2f5d3c;border-radius:10px;padding:1rem 1.15rem;font-size:.93rem;margin-top:1.15rem}
+.form-ok.visivel{display:block}
+.contacto-caixas{display:grid;gap:1.15rem}
+.caixa{background:var(--branco);border:1px solid var(--linha);border-radius:var(--radius);padding:1.65rem 1.75rem}
+.caixa h4{display:flex;align-items:center;gap:.6rem;font-size:1.12rem;margin-bottom:.6rem}
+.caixa p{font-size:.93rem}
+.caixa .btn{margin-top:1rem}
+.horario{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:.35rem}
+.horario td{padding:.44rem 0;border-bottom:1px solid var(--linha)}
+.horario td:last-child{text-align:right;font-weight:700;color:var(--ink)}
+.horario tr:last-child td{border-bottom:0}
+
+/* ---------- RODAPÉ ---------- */.rodape{background:var(--ink);color:rgba(255,255,255,.78)}.rodape-grelha{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.2rem;padding-top:clamp(2.6rem,5vw,3.8rem);padding-bottom:2.2rem}.rodape .marca b{color:#fff}.rodape .marca span{color:#ffd479}.rodape h4{color:#fff;font-size:1.02rem;margin-bottom:.75rem}.rodape-texto{font-size:.92rem;line-height:1.75}.rodape-texto .ph{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.75)}.rodape-base{border-top:1px solid rgba(255,255,255,.12);padding:1.35rem 22px;text-align:center;font-size:.82rem;color:rgba(255,255,255,.6)}.rodape-base a{color:#ffd479}
+/* ---------- FLUTUANTES ---------- */.wa-flutuante{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(37,211,102,.42);transition:transform .25s ease}.wa-flutuante:hover{transform:scale(1.08)}
+/* ---------- ANIMAÇÕES ---------- */.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}.reveal.visivel{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+/* ---------- RESPONSIVO ---------- */@media(max-width:920px){.historia-grelha,.reserva-grelha{grid-template-columns:1fr}.historia-img img{height:360px}}@media(max-width:760px){.nav-links{position:fixed;inset:0 0 auto;top:64px;flex-direction:column;align-items:stretch;background:var(--branco);border-bottom:1px solid var(--linha);padding:1.1rem;gap:.35rem;transform:translateY(-130%);transition:transform .35s ease;box-shadow:var(--sombra)}.nav-links.aberto{transform:none}.nav-links a{padding:.85rem 1rem}.nav-cta{margin-left:0;margin-top:.5rem}.burger{display:flex}.hero{min-height:78vh}.hero-conteudo{padding-top:5.5rem}.form-grelha{grid-template-columns:1fr}.rodape-grelha{grid-template-columns:1fr;gap:1.6rem}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Tasquinha do Brasileiro",
+  "servesCuisine": ["Cozinha portuguesa", "Cozinha brasileira"],
+  "address": {"@type": "PostalAddress", "addressLocality": "Viseu", "addressCountry": "PT", "streetAddress": "[PREENCHER: morada]"},
+  "telephone": "[PREENCHER: telefone]",
+  "priceRange": "€€",
+  "url": ""
+}
+</script>
 </head>
 <body>
 <!-- DEMO GRATUITA - POR APROVAR - nada enviado ao cliente -->
 
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="#inicio">Tasquinha do Brasileiro</a>
-      <div>
-        <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#marcacao">Marcar Mesa</a>
-        <a href="#contacto">Contactos</a>
-      </div>
-    </nav>
-  </div>
+<header class="site-header" id="topo">
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="marca" href="#topo"><b>Tasquinha do Brasileiro</b><span>Cozinha de casa · Viseu</span></a>
+    <ul class="nav-links" id="menu">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#carta">Especialidades</a></li>
+      <li><a href="#historia">A Nossa História</a></li>
+      <li><a href="#reserva">Reservas</a></li>
+      <li><a href="#contacto">Contactos</a></li>
+      <li><a class="btn btn-ouro nav-cta" href="#reserva">Marcar Mesa</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 </header>
 
 <main>
+<!-- ===== HERO ===== -->
 <section class="hero" id="inicio">
-  <span class="stars">★ 4,9 / 5 no Tripadvisor</span>
-  <h1>Sabores caseiros,<br>coração acolhedor.</h1>
-  <p>Bem-vindo à Tasquinha do Brasileiro, em Viseu. Cozinha fresca, simpatia à mesa e aquela sensação de comer em casa — todos os dias.</p>
-  <a class="btn" href="#marcacao">Marcar Mesa</a>
-  &nbsp;<a class="btn o" href="#servicos" style="margin-left:8px">Ver Serviços</a>
-</section>
-
-<section id="servicos">
-  <div class="wrap">
-    <h2>Os nossos serviços</h2>
-    <p class="sub">Do almoço rápido ao jantar demorado, há sempre lugar à mesa.</p>
-    <div class="cards">
-      <div class="card"><div class="ic">🍲</div><h3>Pratos do Dia</h3><p>Ementa renovada diariamente, com sugestões da cozinha. Consulte o prato do dia em [PREENCHER: telefone / redes sociais].</p></div>
-      <div class="card"><div class="ic">🍽️</div><h3>Almoços &amp; Jantares</h3><p>Serviço contínuo num ambiente familiar, ideal para refeições de negócio ou em família.</p></div>
-      <div class="card"><div class="ic">🥡</div><h3>Takeaway</h3><p>Peça a sua refeição para levar. Encomendas pelo [PREENCHER: telefone].</p></div>
-      <div class="card"><div class="ic">🎉</div><h3>Grupos &amp; Eventos</h3><p>Reservas para grupos e celebrações. Fale connosco para preparar a ocasião.</p></div>
-      <div class="card"><div class="ic">🍰</div><h3>Sobremesas Caseiras</h3><p>Doces feidos na casa, para terminar a refeição em beleza.</p></div>
-      <div class="card"><div class="ic">☕</div><h3>Café &amp; Convívio</h3><p>Um café tranquilo, uma conversa demorada. Aqui ninguém tem pressa.</p></div>
+  <div class="hero-bg" role="img" aria-label="Sala acolhedora da tasquinha"></div>
+  <div class="hero-conteudo">
+    <div class="nota-estrela"><b>★★★★★</b> 4,9 / 5 — os nossos clientes dizem melhor do que nós</div>
+    <h1>Sabores caseiros, <em>coração acolhedor</em></h1>
+    <p class="lead">Bem-vindo à Tasquinha do Brasileiro, em Viseu. Cozinha fresca, simpatia à mesa e aquela sensação de comer em casa — do almoço rápido ao jantar demorado.</p>
+    <div class="hero-acoes">
+      <a class="btn btn-ouro" href="#reserva">Marcar Mesa</a>
+      <a class="btn btn-linha-clara" href="#carta">Ver Especialidades</a>
     </div>
   </div>
 </section>
 
-<div class="strip">
-  <div class="big">★ 4,9 / 5</div>
-  <p>Avaliação no Tripadvisor — obrigado a todos os nossos clientes!</p>
-  <p class="review">«[EXEMPLO — substituir por avaliação real]»</p>
+<div class="faixa">
+  <div class="container">
+    <p>🥩 <b>Picanha na brasa</b> · 🍲 <b>Feijoada aos sábados</b> · 🐟 <b>Bacalhau da casa</b> · 🍰 <b>Doces feitos no dia</b> · ☕ <b>Café sem pressa</b></p>
+  </div>
 </div>
 
-<section id="sobre">
-  <div class="wrap about">
-    <div>
-      <h2>A nossa história</h2>
-      <p>A Tasquinha do Brasileiro nasceu em [PREENCHER: ano] da vontade de [PREENCHER: nome / família] de criar um espaço onde a comida caseira e a simpatia andam sempre de mãos dadas.</p>
-      <p style="margin-top:12px">Trabalhamos com produtos frescos e receitas que atravessam gerações, servidas com o carinho que só uma tasca de bairro conhece. Venha descobrir-nos no coração de Viseu.</p>
+<!-- ===== SERVIÇOS ===== -->
+<section class="servicos" id="servicos">
+  <div class="container">
+    <div class="reveal">
+      <span class="rotulo">O que fazemos</span>
+      <h2 class="sec-titulo">Há sempre lugar à nossa mesa</h2>
+      <p class="sec-lead">De uma refeição rápida ao almoço de família completo — com a mesma atenção em todos.</p>
     </div>
-    <div class="ph">[PREENCHER: fotografia real do espaço ou da equipa]</div>
+    <div class="grelha-6">
+      <div class="cartao reveal"><div class="ic">🍲</div><h3>Pratos do Dia</h3><p>Ementa renovada todos os dias com sugestões da cozinha. Sopa, prato e sobremesa com preço de bairro.</p></div>
+      <div class="cartao reveal"><div class="ic">🍽️</div><h3>Almoços &amp; Jantares</h3><p>Serviço contínuo num ambiente familiar — ideal para refeições de negócio ou em boa companhia.</p></div>
+      <div class="cartao reveal"><div class="ic">🥩</div><h3>Grelhados na Brasa</h3><p>Picanha, entrecôte e espetadas feitas na brasa, na hora do pedido. A especialidade da casa.</p></div>
+      <div class="cartao reveal"><div class="ic">🥡</div><h3>Take-away</h3><p>Peça por telefone ou WhatsApp e leve a nossa cozinha para casa, ainda quentinha.</p></div>
+      <div class="cartao reveal"><div class="ic">🎉</div><h3>Grupos &amp; Eventos</h3><p>Reservas para grupos, aniversários e celebrações. Diga-nos a ocasião e tratamos do resto.</p></div>
+        <div class="cartao reveal"><div class="ic">🍰</div><h3>Doces da Casa</h3><p>Feitos todos os dias na nossa cozinha — para terminar a refeição em beleza.</p></div>
+    </div>
+  </div>
+</section>
+<!-- ===== ESPECIALIDADES ===== -->
+<section class="destaques" id="carta">
+  <div class="container">
+    <div class="reveal">
+      <span class="rotulo">Especialidades da casa</span>
+      <h2 class="sec-titulo">O que não pode perder</h2>
+      <p class="sec-lead">Uma carta curta, com os pratos que trouxemos da nossa história — e os que conquistaram Viseu.</p>
+    </div>
+    <div class="grelha-pratos">
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&auto=format&fit=crop" alt="Picanha grelhada na brasa" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">A mais pedida</span>
+          <div class="topo"><h3>Picanha na Brasa</h3><span class="preco">16,50 €</span></div>
+          <p>Cortada à faca, com farofa de ovos, arroz de forno e vinagrete da casa.</p>
+        </div>
+      </article>
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&auto=format&fit=crop" alt="Carne assada com acompanhamentos" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">Aos sábados</span>
+          <div class="topo"><h3>Feijoada Completa</h3><span class="preco">12,00 €</span></div>
+          <p>A receita que atravessou o Atlântico — com arroz branco, couve e laranja.</p>
+        </div>
+      </article>
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80&auto=format&fit=crop" alt="Prato de bacalhau da casa" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">Clássico</span>
+          <div class="topo"><h3>Bacalhau à Gomes de Sá</h3><span class="preco">13,50 €</span></div>
+          <p>Lascas grossas, batata a rodelas, ovo cozido e azeite generoso.</p>
+        </div>
+      </article>
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80&auto=format&fit=crop" alt="Travessa de camarão" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">Tropical</span>
+          <div class="topo"><h3>Moqueca de Camarão</h3><span class="preco">15,00 €</span></div>
+          <p>Leite de coco, dendê e pimentões — com arroz branco e pirão.</p>
+        </div>
+      </article>
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80&auto=format&fit=crop" alt="Pizza artesanal" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">Para partilhar</span>
+          <div class="topo"><h3>Espetada Mista da Tasca</h3><span class="preco">14,00 €</span></div>
+          <p>Vitela, porco e frango marinados na casa, com legumes grelhados.</p>
+        </div>
+      </article>
+      <article class="prato-destaque reveal">
+        <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80&auto=format&fit=crop" alt="Doce da casa" loading="lazy">
+        <div class="prato-corpo">
+          <span class="etiqueta">Doce da casa</span>
+          <div class="topo"><h3>Pudim &amp; Doces do Dia</h3><span class="preco">3,50 €</span></div>
+          <p>Feitos de manhã na nossa cozinha. Pergunte pelo doce do dia.</p>
+        </div>
+      </article>
+    </div>
+    <p class="nota-exemplo">Pratos e valores de exemplo para demonstração — a confirmar com o restaurante.</p>
   </div>
 </section>
 
-<section id="marcacao" style="background:#fff">
-  <div class="wrap contact">
-    <div>
-      <h2>Marque a sua mesa</h2>
-      <p class="sub">Preencha o pedido e confirmamos a disponibilidade.</p>
-      <form onsubmit="alert('Pedido registado! (Demo — será enviado ao restaurante após aprovação)');return false">
-        <div class="g">
-          <div><label>Nome</label><input type="text" required placeholder="O seu nome"></div>
-          <div><label>Telefone</label><input type="tel" required placeholder="9XX XXX XXX"></div>
-          <div><label>Data</label><input type="date" required></div>
-          <div><label>Hora</label><input type="time" required></div>
-          <div><label>Pessoas</label><select><option>2</option><option>3</option><option>4</option><option>6</option><option>Mais de 6</option></select></div>
-          <div><label>Observações</label><input type="text" placeholder="Opcional"></div>
-        </div>
-        <br><button class="btn" type="submit">Pedir Marcação</button>
-        <p class="note">Demo — o formulário será ligado ao restaurante após aprovação.</p>
-      </form>
+<!-- ===== TESTEMUNHOS ===== -->
+<section class="testemunhos" id="avaliacoes">
+  <div class="container">
+    <div class="reveal">
+      <span class="rotulo">Quem já cá veio</span>
+      <h2 class="sec-titulo">Palavras dos nossos clientes</h2>
+      <p class="sec-lead">Não somos nós que dizemos — são eles.</p>
     </div>
-    <div class="info" id="contacto">
-      <h2>Contactos</h2>
-      <p class="sub">Estamos à sua espera em Viseu.</p>
-      <div><strong>📍 Morada:</strong><br>[PREENCHER: morada, Viseu]</div>
-      <div><strong>📞 Telefone:</strong><br>[PREENCHER: telefone]</div>
-      <div><strong>✉️ Email:</strong><br>[PREENCHER: email]</div>
-      <div><strong>🕘 Horário:</strong><br>[PREENCHER: dias e horário de funcionamento]</div>
-      <div><strong>🌐 Redes sociais:</strong><br>[PREENCHER: Facebook / Instagram]</div>
+    <div class="grelha-testemunhos">
+      <div class="testemunho reveal"><div class="estrelas">★★★★★</div><p>«Comida como a da minha avó, num espaço acolhedor. A picanha é das melhores de Viseu — e o atendimento, melhor ainda.»</p><footer>— [EXEMPLO] Cliente do Google</footer></div>
+      <div class="testemunho reveal"><div class="estrelas">★★★★★</div><p>«Fui almoçar e fiquei a tarde toda. Ambiente familiar, preço justo e aquela feijoada de sábado que não há duas igual.»</p><footer>— [EXEMPLO] Cliente do Tripadvisor</footer></div>
+      <div class="testemunho reveal"><div class="estrelas">★★★★★</div><p>«Levo sempre os meus clientes de fora de Viseu aqui. Nunca falhou — todos saem a perguntar quando voltamos.»</p><footer>— [EXEMPLO] Cliente do Facebook</footer></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HISTÓRIA ===== -->
+<section class="historia" id="historia">
+  <div class="container">
+    <div class="historia-grelha">
+      <div class="historia-img reveal">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80&auto=format&fit=crop" alt="Ambiente da Tasquinha do Brasileiro" loading="lazy">
+        <div class="historia-selo"><b>Cozinha aberta</b><small>feito na hora</small></div>
+      </div>
+      <div class="reveal">
+        <span class="rotulo">A nossa história</span>
+        <h2 class="sec-titulo">Uma tasca com alma de duas terras</h2>
+        <p class="sec-lead">A Tasquinha do Brasileiro nasceu do encontro entre a cozinha portuguesa daqui e os sabores que vieram do Brasil — servidos sempre com a mesma generosidade.</p>
+        <div class="passos">
+          <div class="passo"><div class="num">1</div><div><h4>Produto fresco, todos os dias</h4><p>Compramos como quem cozinha em casa: o que há de melhor nessa manhã, é isso que se come à mesa.</p></div></div>
+          <div class="passo"><div class="num">2</div><div><h4>Receitas que atravessaram fronteiras</h4><p>Da feijoada ao bacalhau à Gomes de Sá, cada prato tem história — e contamo-la à mesa, se quiser ouvir.</p></div></div>
+          <div class="passo"><div class="num">3</div><div><h4>Uma mesa para toda a gente</h4><p>Almoço de negócios, jantar de família ou um café demorado — aqui ninguém é estrangeiro.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== RESERVA + CONTACTO ===== -->
+<section class="reserva" id="reserva">
+  <div class="container">
+    <div class="reserva-grelha">
+      <div class="reveal">
+        <span class="rotulo">Reservas</span>
+        <h2 class="sec-titulo">Marque a sua mesa</h2>
+        <p class="sec-lead">Preencha o pedido e confirmamos a disponibilidade. Para grupos grandes, prefira ligar — falamos já.</p>
+        <form class="form-reserva" id="form-reserva" novalidate>
+          <div class="form-grelha">
+            <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" type="text" required placeholder="O seu nome" autocomplete="name"></div>
+            <div class="campo"><label for="tel">Telefone</label><input id="tel" name="tel" type="tel" required placeholder="9XX XXX XXX" autocomplete="tel"></div>
+            <div class="campo"><label for="data">Data</label><input id="data" name="data" type="date" required></div>
+            <div class="campo"><label for="hora">Hora</label><input id="hora" name="hora" type="time" required></div>
+            <div class="campo"><label for="pessoas">Pessoas</label><select id="pessoas" name="pessoas"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></div>
+            <div class="campo"><label for="obs">Observações</label><input id="obs" name="obs" type="text" placeholder="Opcional"></div>
+          </div>
+          <button class="btn btn-verde" type="submit">Pedir Marcação</button>
+          <p class="form-nota">Demo — o formulário será ligado ao restaurante após aprovação.</p>
+          <div class="form-ok" id="form-ok">✅ Pedido registado! (Demonstração — nada foi enviado.) Em produção, confirmamos por telefone ou WhatsApp.</div>
+        </form>
+      </div>
+      <div class="contacto-caixas reveal" id="contacto">
+        <div class="caixa">
+          <h4>💬 Reservas por WhatsApp</h4>
+          <p>Envie o dia, a hora e quantas pessoas são — em poucos minutos está tudo tratado.</p>
+          <!-- EM PRODUÇÃO: ligar a https://wa.me/351<PREENCHER> -->
+          <a class="btn btn-ouro" href="#reserva">Pedir por WhatsApp</a>
+        </div>
+        <div class="caixa">
+          <h4>📍 Onde estamos</h4>
+          <p><span class="ph">[PREENCHER: morada completa]</span><br>Viseu, Portugal<br><br><strong>📞</strong> <span class="ph">[PREENCHER: telefone]</span><br><strong>✉️</strong> <span class="ph">[PREENCHER: email]</span></p>
+          <p style="margin-top:.8rem"><a href="https://www.google.com/maps/search/restaurantes+Viseu" target="_blank" rel="noopener">Abrir no Google Maps →</a></p>
+        </div>
+        <div class="caixa">
+          <h4>🕐 Horário</h4>
+          <table class="horario">
+            <tr><td>Segunda</td><td>Encerrado</td></tr>
+            <tr><td>Terça a sexta</td><td><span class="ph">[PREENCHER]</span></td></tr>
+            <tr><td>Sábado</td><td><span class="ph">[PREENCHER]</span></td></tr>
+            <tr><td>Domingo</td><td><span class="ph">[PREENCHER]</span></td></tr>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>
-  © <span id="y">2025</span> Tasquinha do Brasileiro · Viseu, Portugal<br>
-  Demo gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — SrRobs Virtual Ai · <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a> — por aprovar.
+<footer class="rodape">
+  <div class="container rodape-grelha">
+    <div>
+      <a class="marca" href="#topo"><b>Tasquinha do Brasileiro</b><span>Cozinha de casa · Viseu</span></a>
+      <p class="rodape-texto">Cozinha fresca, simpatia à mesa e aquela sensação de comer em casa — todos os dias, no coração de Viseu.</p>
+    </div>
+    <div>
+      <h4>Horário</h4>
+      <p class="rodape-texto">Terça a domingo: <span class="ph">[PREENCHER: horário]</span><br>Segunda: encerrado</p>
+    </div>
+    <div>
+      <h4>Contactos</h4>
+      <p class="rodape-texto"><span class="ph">[PREENCHER: morada]</span>, Viseu<br><span class="ph">[PREENCHER: telefone]</span></p>
+    </div>
+  </div>
+  <div class="rodape-base">
+    <p>© <span id="ano">2026</span> Tasquinha do Brasileiro — Viseu · Demo gratuita criada por <strong>Roberto Marques</strong> (conhecido por <strong>SrRobs</strong> ou <strong>Robs</strong>) — <a href="https://robertomf170.github.io/srrobs-portfolio/">Portefólio</a></p>
+    <p>Por aprovar — sem dados reais do negócio.</p>
+  </div>
 </footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+<a class="wa-flutuante" href="#reserva" aria-label="Pedidos por WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4 0-.5.1-.7l.5-.6c.1-.2.1-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.2 3.8a11.6 11.6 0 0 0 4.5 4.3c1.7.9 3 1.1 3.8 1 .6-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+// Menu móvel
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+burger.addEventListener('click', () => {
+  const aberto = menu.classList.toggle('aberto');
+  burger.classList.toggle('ativo', aberto);
+  burger.setAttribute('aria-expanded', aberto);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('aberto'); burger.classList.remove('ativo');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// Cabeçalho com estado "scrolled"
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// Animações de entrada
+const obs = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Formulário de reserva (demo — não envia)
+document.getElementById('form-reserva').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const f = ev.target;
+  if (!f.checkValidity()) { f.reportValidity(); return; }
+  document.getElementById('form-ok').classList.add('visivel');
+  f.reset();
+});
+
+// Ano do rodapé
+document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
