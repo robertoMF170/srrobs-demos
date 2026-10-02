@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lofi Calm Night - Stream Overlays Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .stream-scene {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            border: 1px solid #333;
+            background-color: #141414;
+            overflow: hidden;
+        }
+
+        .scene-header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #e65100;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .scene-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #e65100;
+            font-size: 18px;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            height: 15%;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 6px;
+            padding: 10px;
+            overflow-y: auto;
+            z-index: 2;
+        }
+
+        .chat-messages {
+            height: 100%;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        .chat-message {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .chat-input-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            height: 6%;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 6px;
+            padding: 10px;
+            z-index: 2;
+        }
+
+        .chat-input {
+            width: calc(100% - 40px);
+            height: 30px;
+            background-color: rgba(50, 50, 50, 0.8);
+            border: none;
+            color: #e0e0e0;
+            padding: 0 10px;
+            font-size: 14px;
+            border-radius: 3px;
+        }
+
+        .alert-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            width: calc(100% - 40px);
+            height: auto;
+            pointer-events: none;
+        }
+
+        .alert-box {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px solid #e65100;
+            color: #e65100;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: left;
+            position: relative;
+            animation: pulse 2s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .alert-box strong {
+            font-weight: bold;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3;
+        }
+
+        .preview-button {
+            background-color: #e65100;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .preview-button:hover {
+            background-color: #d64a00;
+        }
+
+        .note {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 6px;
+        }
+
+        .scene-selector {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .scene-button {
+            background-color: #e65100;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .scene-button:hover {
+            background-color: #d64a00;
+        }
+        
+        /* Lofi theme elements */
+        .lofi-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><rect width="1920" height="1080" fill="%23141414"/><pattern id="noise" width="4" height="4" patternUnits="userSpaceOnUse"><animateTransform attributeName="transform" type="rotate" dur="5s" repeatCount="indefinite" value="0 2 2"/></pattern><rect width="1920" height="1080" fill="url(%23noise)"></rect></svg>');
+            background-size: cover;
+        }
+
+        .lofi-text {
+            color: #e65100;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Streamer info */
+        .streamer-info {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        /* Streamer name */
+        .streamer-name {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+        /* Streamer status */
+        .streamer-status {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 24px;
+        }
+        
+        /* Streamer social */
+        .streamer-social {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 18px;
+        }
+        
+        /* Streamer disclaimer */
+        .streamer-disclaimer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 14px;
+        }
+        
+        /* Streamer disclaimer */
+        .streamer-disclaimer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            text-align: center;
+            color: #e65100;
+            font-size: 14px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Lofi background -->
+        <div class="lofi-background"></div>
+
+        <!-- Streamer info -->
+        <div class="streamer-info">
+            <div class="scene-header">[EDIT] STREAMER NAME</div>
+            <div class="scene-footer">STREAMING NOW • [EDIT] PLATFORM</div>
+        </div>
+
+        <!-- Chat area -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages"></div>
+        </div>
+
+        <!-- Input area -->
+        <div class="chat-input-container">
+            <input type="text" placeholder="Type your message..." class="chat-input" id="chatInput">
+        </div>
+
+        <!-- Alert container -->
+        <div class="alert-container" id="alertContainer"></div>
+
+        <!-- Button to trigger alerts -->
+        <div class="button-container">
+            <button class="preview-button" onclick="triggerAlerts()">Trigger Alerts</button>
+        </div>
+
+        <!-- Scene selector buttons -->
+        <div class="scene-selector">
+            <button class="scene-button" onclick="changeScene('starting')">Starting Soon</button>
+            <button class="scene-button" onclick="changeScene('brb')">BRB</button>
+            <button class="scene-button" onclick="changeScene('ending')">Ending</button>
+        </div>
+
+        <!-- Note about demo -->
+        <div class="note">SIMULATED DEMO — the pack files are delivered on purchase</div>
+    </div>
+
+    <script>
+        // Initialize chat messages
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const alertContainer = document.getElementById('alertContainer');
+
+        // Generate random fake usernames
+        function getRandomUsername() {
+            const names = [
+                'StreamerFan123', 
+                'LofiLover456',
+                'NightWatcher789',
+                'CalmMind000',
+                'NocturnalDreamer',
+                'SleepyGamer',
+                'RelaxationMode',
+                'MeditativeFlow',
+                'ZenMaster123',
+                'PeacefulHeart'
+            ];
+            return names[Math.floor(Math.random() * names.length)];
+        }
+
+        // Generate random fake messages
+        function getRandomMessage() {
+            const messages = [
+                'This is so relaxing!',
+                'I love this lofi music.',
+                'Thanks for the stream, keep going!',
+                'Can you play more of this?',
+                'This is exactly what I need right now.',
+                'Mind blown by your content!',
+                'You are amazing, keep it up!',
+                'I\'m just here to relax and enjoy.',
+                'The atmosphere is perfect.',
+                'Your stream is my favorite time of day.'
+            ];
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        // Generate random fake alerts
+        function generateAlert(type) {
+            const username = getRandomUsername();
+            let message;
+            
+            switch (type) {
+                case 'follower':
+                    message = `${username} just followed you!`;
+                    break;
+                case 'subscriber':
+                    message = `${username} just subscribed to your channel!`;
+                    break;
+                case 'donation':
+                    message = `${username} donated ${Math.floor(Math.random() * 100) + 1} coins!`;
+                    break;
+                default:
+                    message = `Someone sent a message: "${getRandomMessage()}"`;
+            }
+            
+            const alertBox = document.createElement('div');
+            alertBox.className = 'alert-box';
+            alertBox.innerHTML = `<strong>${message}</strong>`;
+            
+            alertContainer.appendChild(alertBox);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                alertContainer.removeChild(alertBox);
+            }, 5000);
+        }
+
+        // Trigger alerts randomly
+        function triggerAlerts() {
+            const types = ['follower', 'subscriber', 'donation'];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            
+            generateAlert(randomType);
+        }
+
+        // Add a message to chat
+        function addMessageToChat(message, username) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'chat-message';
+            messageElement.innerHTML = `<strong>${username}</strong>: ${message}`;
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Add a random message to chat every 3 seconds
+        function addRandomMessage() {
+            const username = getRandomUsername();
+            const message = getRandomMessage();
+            addMessageToChat(message, username);
+        }
+
+        // Start adding messages immediately and then every few seconds
+        setInterval(addRandomMessage, 2000);
+
+        // Add an alert every 5 seconds
+        setInterval(triggerAlerts, 5000);
+
+        // Function to change scene
+        function changeScene(scene) {
+            switch (scene) {
+                case 'starting':
+                    document.querySelector('.scene-header').textContent = '[EDIT] STREAMER NAME';
+                    document.querySelector('.scene-footer').textContent = 'STREAMING NOW • [EDIT] PLATFORM';
+                    break;
+                case 'brb':
+                    document.querySelector('.scene-header').textContent = '[EDIT] STREAMER NAME';
+                    document.querySelector('.scene-footer').textContent = 'BRB - BACK SOON!';
+                    break;
+                case 'ending':
+                    document.querySelector('.scene-header').textContent = '[EDIT] STREAMER NAME';
+                    document.querySelector('.scene-footer').textContent = 'STREAM ENDING SOON...';
+                    break;
+            }
+        }
+
+        // Initialize with a starting scene
+        changeScene('starting');
+
+        // Add initial messages to chat
+        addRandomMessage();
+    </script>
+</body>
+</html>
