@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit Painéis Twitch Completo - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #141414;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+        
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #141414;
+        }
+        
+        .stream-container {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .stream-area {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            background-color: #0e0e0e;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .stream-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #141414;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .stream-header h1 {
+            font-size: 36px;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .stream-header p {
+            font-size: 18px;
+            color: #aaa;
+        }
+        
+        .stream-content {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .stream-video {
+            width: 1920px;
+            height: 1080px;
+            background-color: #141414;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .chat-container {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background-color: #141414;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            overflow-y: auto;
+        }
+        
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .chat-messages {
+            height: calc(100% - 50px);
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .message {
+            position: relative;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            border-left: 3px solid #4d4d4d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .user-name {
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .message-content {
+            color: #aaa;
+        }
+        
+        .chat-input {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            background-color: #222;
+        }
+        
+        .chat-input input {
+            flex-grow: 1;
+            border: none;
+            background-color: transparent;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .alert-container {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            pointer-events: none;
+        }
+        
+        .alert {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 20px;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .alert.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .alert.follower {
+            background-color: #28a745;
+            color: white;
+            border-left: 4px solid #28a745;
+        }
+        
+        .alert.subscriber {
+            background-color: #ffc107;
+            color: black;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .alert.donation {
+            background-color: #dc3545;
+            color: white;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .alert-text {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .alert-details {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #aaa;
+        }
+        
+        .button-container {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 999;
+        }
+        
+        .preview-button {
+            padding: 8px 20px;
+            background-color: #4d4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .preview-button:hover {
+            background-color: #757575;
+            transform: translateY(-2px);
+        }
+        
+        .warning-note {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 9999;
+        }
+        
+        .scene-buttons {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 999;
+        }
+        
+        .scene-button {
+            padding: 8px 20px;
+            background-color: #4d4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .scene-button:hover {
+            background-color: #757575;
+            transform: translateY(-2px);
+        }
+        
+        /* Animation for alerts */
+        @keyframes pulse {
+            0% { opacity: 0; }
+            40% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .alert.pulse {
+            animation: pulse 3s;
+        }
+        
+        /* Customizable elements */
+        [EDIT] {
+            color: #ff6b6b;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Stream scene styles */
+        .stream-scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #141414;
+            z-index: -1;
+        }
+        
+        .scene-1 {
+            background-image: url('https://placehold.co/1920x1080');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .scene-2 {
+            background-color: #141414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .scene-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .scene-2::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://placehold.co/1920x1080');
+            opacity: 0.3;
+        }
+        
+        .scene-3 {
+            background-color: #141414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .scene-3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .scene-3::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://placehold.co/1920x1080');
+            opacity: 0.3;
+        }
+        
+        .scene-4 {
+            background-color: #141414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .scene-4::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .scene-4::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://placehold.co/1920x1080');
+            opacity: 0.3;
+        }
+        
+        .scene-5 {
+            background-color: #141414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .scene-5::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .scene-5::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://placehold.co/1920x1080');
+            opacity: 0.3;
+        }
+        
+        /* Customizable elements */
+        .custom-text {
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .custom-button {
+            padding: 8px 20px;
+            background-color: #4d4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-button:hover {
+            background-color: #757575;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-note">SIMULATED DEMO — the pack files are delivered on purchase. Decide after you see, never in the dark.</div>
+    
+    <div class="container">
+        <div class="stream-container">
+            <div class="stream-area">
+                <!-- Stream Scene -->
+                <div id="scene-1" class="stream-scene scene-1"></div>
+                
+                <!-- Follower/Subscriber/Donation Alerts -->
+                <div class="alert-container">
+                    <div id="alert-follower" class="alert follower">[EDIT] just followed!</div>
+                    <div id="alert-subscriber" class="alert subscriber">[EDIT] subscribed!</div>
+                    <div id="alert-donation" class="alert donation">[EDIT] donated $10!</div>
+                </div>
+                
+                <!-- Chat Box -->
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <span>Chat</span>
+                        <span>[EDIT]</span>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Messages will be added here by JavaScript -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message...">
+                    </div>
+                </div>
+                
+                <!-- Scene Buttons -->
+                <div class="scene-buttons">
+                    <button class="scene-button" onclick="switchScene('scene-1')">Starting Soon</button>
+                    <button class="scene-button" onclick="switchScene('scene-2')">BRB</button>
+                    <button class="scene-button" onclick="switchScene('scene-3')">Ending</button>
+                </div>
+                
+                <!-- Stream Header -->
+                <div class="stream-header">
+                    <h1>[EDIT]</h1>
+                    <p>Stream is live!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize chat messages
+        const chatMessages = document.getElementById('chat-messages');
+        
+        // Add random fake messages to the chat
+        function addRandomMessage() {
+            const names = [
+                'User1', 'User2', 'User3', 'User4', 
+                'StreamerFan', 'CommunityMember', 'Viewer',
+                '[EDIT]', 'Anonymous', 'Guest'
+            ];

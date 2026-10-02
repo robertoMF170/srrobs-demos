@@ -27,3 +27,13 @@ script de guarda que redireciona para `index.html` sem palavra-passe.
 git add -A && git commit -m "update demos" && git push
 ```
 O GitHub Pages publica automaticamente a branch `main`.
+
+---
+
+### 📦 Packs Disponíveis
+
+Clique no link abaixo para ver o **DEMO SIMULADO**:
+
+- [Pack 1: Sistema de Automação Comercial](https://robertomf170.github.io/srrobs-demos/pack1/)
+- [Pack 2: Plataforma de Gestão de Projetos](https://robertomf170.github.io/srrobs-demos/pack2/)
+- [Pack 3: Sistema de Monitorização em Tempo Real](https://robertomf170.github.io/srrobs-demos/pack3/)

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas Kawaii Animados - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            overflow: hidden;
+        }
+        
+        .stream-scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .scene-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+            padding: 20px;
+        }
+        
+        .streamer-area {
+            position: relative;
+            width: 80%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .streamer {
+            width: 80%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4a4a4a;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .streamer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #3a3a3a;
+            border-radius: 10px;
+        }
+        
+        .chat-area {
+            position: relative;
+            width: 80%;
+            height: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background-color: #2d2d2d;
+            border-radius: 10px;
+            padding-bottom: 20px;
+        }
+        
+        .chat-messages {
+            width: 90%;
+            height: 80%;
+            overflow-y: auto;
+            background-color: transparent;
+            color: white;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 10px;
+            border-left: 2px solid #6a6a6a;
+        }
+        
+        .chat-input {
+            width: 90%;
+            height: 80px;
+            background-color: transparent;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            border-top: 2px solid #6a6a6a;
+        }
+        
+        .chat-input input {
+            width: 95%;
+            height: 30px;
+            background-color: #3a3a3a;
+            color: white;
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .chat-input button {
+            width: 25%;
+            height: 30px;
+            background-color: #6a6a6a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .alert-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: none;
+        }
+        
+        .alert-box {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 3;
+            animation: fadeInOut 1s ease-in-out forwards;
+        }
+        
+        .alert-box p {
+            font-size: 18px;
+            text-align: center;
+            margin: 0;
+            color: #e0e0e0;
+        }
+        
+        @keyframes fadeInOut {
+            from { opacity: 0; transform: translateX(-50%) scale(0.8); }
+            to { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+        
+        .alert-box button {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        
+        .alert-box button:hover {
+            background-color: #ff5252;
+        }
+        
+        .alert-attention {
+            background-color: rgba(255, 0, 0, 0.3);
+            color: white;
+        }
+        
+        .alert-warning {
+            background-color: rgba(255, 165, 0, 0.3);
+            color: black;
+        }
+        
+        .alert-success {
+            background-color: rgba(0, 255, 0, 0.3);
+            color: white;
+        }
+        
+        .alert-info {
+            background-color: rgba(0, 0, 255, 0.3);
+            color: white;
+        }
+        
+        .alert-danger {
+            background-color: rgba(255, 0, 0, 0.3);
+            color: white;
+        }
+        
+        .alert-attention p,
+        .alert-warning p,
+        .alert-success p,
+        .alert-info p,
+        .alert-danger p {
+            font-size: 18px;
+            text-align: center;
+            margin: 0;
+            padding: 5px 0;
+        }
+        
+        .alert-text {
+            display: none;
+        }
+        
+        .alert-attention .alert-text,
+        .alert-warning .alert-text,
+        .alert-success .alert-text,
+        .alert-info .alert-text,
+        .alert-danger .alert-text {
+            display: block;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .control-button {
+            padding: 10px 20px;
+            background-color: #6a6a6a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        
+        .control-button:hover {
+            background-color: #9a9a9a;
+        }
+        
+        .demo-note {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            width: calc(100% - 40px);
+            padding: 10px;
+            background-color: rgba(255, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+        
+        .scene-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .scene-button {
+            padding: 10px 20px;
+            background-color: #6a6a6a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        
+        .scene-button:hover {
+            background-color: #9a9a9a;
+        }
+        
+        .fake-chat-message {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            width: 80%;
+            height: 40px;
+            background-color: #3a3a3a;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
+        .fake-chat-message p {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .chat-messages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #6a6a6a;
+        }
+        
+        .fake-chat-message:nth-child(odd) {
+            background-color: #4a4a4a;
+        }
+        
+        .fake-chat-message:nth-child(even) {
+            background-color: #5a5a5a;
+        }
+        
+        /* Animation for alerts */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .alert-box {
+            animation: pulse 1s ease-in-out;
+        }
+        
+        /* Streamer area styling */
+        .streamer-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        /* Chat area styling */
+        .chat-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 1920px) {
+            .container {
+                width: 100vw;
+                height: calc(1080px * (100vw / 1920));
+            }
+            
+            .stream-scene {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        /* Animation for fake chat messages */
+        @keyframes slideInChat {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .fake-chat-message {
+            animation-name: slideInChat;
+            animation-duration: 2s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Demo note -->
+        <div class="demo-note">SIMULATED DEMO — the pack files are delivered on purchase</div>
+        
+        <!-- Stream scene -->
+        <div class="stream-scene">
+            <div class="scene-content">
+                <!-- Streamer area -->
+                <div class="streamer-area">
+                    <div class="streamer">
+                        <p>[EDIT] STREAMER NAME HERE</p>
+                    </div>
+                </div>
+                
+                <!-- Chat area -->
+                <div class="chat-area">
+                    <div class="chat-messages" id="chatMessages">
+                        <p>CHAT IS EMPTY</p>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message...">
+                        <button>Send</button>
+                    </div>
+                </div>
+                
+                <!-- Controls -->
+                <div class="controls">
+                    <button class="control-button" onclick="showAlert('attention')">Attention Alert</button>
+                    <button class="control-button" onclick="showAlert('warning')">Warning Alert</button>
+                    <button class="control-button" onclick="showAlert('success')">Success Alert</button>
+                    <button class="control-button" onclick="showAlert('info')">Info Alert</button>
+                    <button class="control-button" onclick="showAlert('danger')">Danger Alert</button>
+                </div>
+                
+                <!-- Scene buttons -->
+                <div class="scene-buttons">
+                    <button class="scene-button" onclick="startScene()">Starting Soon</button>
+                    <button class="scene-button" onclick="brbScene()">BRB</button>
+                    <button class="scene-button" onclick="endingScene()">Ending</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alert container -->
+        <div class="alert-container">
+            <div class="alert-box" id="alertBox">
+                <p>[EDIT] ALERT MESSAGE HERE</p>
+                <button>Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to generate random alert messages
+        function getRandomAlertMessage() {
+            const messages = [
+                "Thanks for the donation!",
+                "You're amazing, keep it up!",
+                "New follower! Welcome!",
+                "Subscribed! Thanks for supporting!",
+                "Donation received! You rock!",
+                "Love your support!",
+                "This is so kind of you!",
+                "Your generosity means a lot!",
+                "Thank you for being awesome!",
+                "You're the best viewer ever!"
+            ];
+            
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+        
+        // Function to generate random user names
+        function getRandomUserName() {
+            const names = [
+                "[EDIT] USER NAME HERE",
+                "StreamerFan123",
+                "GameMaster456",
+                "ContentCreator789",
+                "CommunitySupporter",
+                "StreamLoverXYZ",
+                "GamerPro101",
+                "ViewerSupporter",
+                "CreativeMind",
+                "TechEnthusiast"
+            ];
+            
+            return names[Math.floor(Math.random() * names.length)];
+        }
+        
+        // Function to generate random chat messages
+        function getRandomChatMessage() {
+            const users = [
+                "[EDIT] USER NAME HERE",
+                "StreamerFan123",
+                "GameMaster456",
+                "ContentCreator789",
+                "CommunitySupporter",
+                "StreamLoverXYZ",
+                "GamerPro101",
+                "ViewerSupporter",
+                "CreativeMind",
+                "TechEnthusiast"
+            ];
+            
+            const messages = [
+                "This is so cool!",
